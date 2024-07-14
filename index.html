@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationery Catalogue</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Stationery Catalogue</h1>
+        <ul id="productList">
+            <li>
+                <h3>Notebook</h3>
+                <p>Price: ₹100</p>
+                <img src="notebook.jpg" alt="Notebook">
+                <button onclick="addToCart('Notebook', 100, 'NB100')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>Pen</h3>
+                <p>Price: ₹20</p>
+                <img src="pen.jpg" alt="Pen">
+                <button onclick="addToCart('Pen', 20, 'PEN20')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>Pencil</h3>
+                <p>Price: ₹10</p>
+                <img src="pencil.jpg" alt="Pencil">
+                <button onclick="addToCart('Pencil', 10, 'PEN10')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>Eraser</h3>
+                <p>Price: ₹5</p>
+                <img src="eraser.jpg" alt="Eraser">
+                <button onclick="addToCart('Eraser', 5, 'ER05')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>Sharpener</h3>
+                <p>Price: ₹15</p>
+                <img src="sharpener.jpg" alt="Sharpener">
+                <button onclick="addToCart('Sharpener', 15, 'SH15')">Add to Cart</button>
+            </li>
+        </ul>
+        <h2>Cart</h2>
+        <ul id="cartItems"></ul>
+        <p id="cartMessage"></p>
+        <form id="checkoutForm" style="display: none;">
+            <h2>Checkout</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="address">Address:</label>
+            <input type="text" id="address" required>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" required>
+            <label for="alternateContact">Alternate Contact:</label>
+            <input type="text" id="alternateContact">
+            <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+        </form>
+    </div>
+</body>
+</html>
