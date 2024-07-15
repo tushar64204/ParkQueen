@@ -224,30 +224,6 @@ main {
     }
   }
   
-  /* Media query to adjust elements on mobile screens */
-  @media (max-width: 700px) {
-    .Floatingcontainer {
-      height: auto; /* Adjust height for mobile screens */
-    }
-  
-    .floatingAnimation {
-      margin-left: 0;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%; /* Ensure the floating element is properly sized on mobile */
-      animation: floatAnimationMobile 3s ease-in-out infinite alternate; /* Adjust animation properties for mobile */
-    }
-  
-    @keyframes floatAnimationMobile {
-      0% {
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(-10px); /* Adjust floating distance for mobile */
-      }
-    }
-  }
 
 /* Header, footer, and main styling */
 header, footer {
