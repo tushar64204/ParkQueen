@@ -100,142 +100,95 @@ form button:hover {
     background-color: #218838; /* Darker green on hover */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #productList {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-}
-header, footer {
-    background-color: #004080;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-}
-header h1, footer p {
-    margin: 5px 0;
-    color: #ffffff;
-}
-nav {
-    margin: 10px 0;
-}
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-nav a:hover {
-    text-decoration: underline;
-}
 
-/* Media query to adjust nav items for mobile screens */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     nav {
+        flex-direction: column;
+        align-items: center;
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #004080;
         padding: 10px 0;
+        background-color: #004080;
+        z-index: 1000;
         text-align: center;
-        z-index: 1000; /* Ensure nav stays on top */
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+        color: #f0f0f0;
     }
 
     nav a {
-        display: inline-block;
-        margin: 5px 10px;
         padding: 10px;
-        color: white;
+        color: #f0f0f0;
+        
     }
-
-    nav a:hover {
-        text-decoration: underline;
+   footer p {
+        margin: 50px 40px;
+        color: #ffffff;
+        padding-bottom: 30px;
     }
-
-    main {
-        margin: 20px 0 80px 0; /* Adjust bottom margin to ensure main content is not overlapped by nav */
-    }
-    header, footer {
-        background-color: #004080;
-        color: white;
-        padding: 5px 10px;
 }
+
 main {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-}
-#about {
-    margin: 20px 0;
-}
-footer {
-    margin-top: 20px;
-}
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-hr {
-    border: 3px solid #004080;
-    width: 120px;
-    margin: 20px 0;
+    margin: 20px 0 80px 0; /* Adjust bottom margin to ensure main content is not overlapped by nav */
 }
 .thumbcontainer {
     position: relative;
     background-color: #000000;
-  }
-  
-  .sliding-container {
+}
+
+.sliding-container {
     position: relative;
     max-width: 50%;
     overflow: hidden; /* Ensure the banners do not overflow */
     padding-left: 300px;
-  }
-  
-  .sliding-thumbnails {
+}
+
+.sliding-thumbnails {
     position: absolute;
     top: calc(100% + 20px); /* Position thumbnails below the slides */
     left: 50%; /* Align thumbnails to the center horizontally */
     transform: translateX(-50%);
     z-index: 10; /* Ensure thumbnails are above the banners */
-  }
-  
-  .thumbnail {
+}
+
+.thumbnail {
     display: inline-block;
     width: 100px; /* Adjust thumbnail size */
     height: auto; /* Maintain aspect ratio */
     margin: 10px; /* Adjust spacing */
     cursor: pointer;
-  }
-  
-  .thumbnail img {
+}
+
+.thumbnail img {
     width: 10%; /* Make sure thumbnails fill their container */
     height: auto;
     border: 4px solid transparent; /* Add border for visibility */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow effect */
-  }
-  
-  .thumbnail.active img {
+}
+
+.thumbnail.active img {
     border-color: black; /* Change border color for active thumbnail */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Increase shadow for active thumbnail */
-  }
-  
-  .slidingSlides {
+}
+
+.slidingSlides {
     display: none; /* Hide all slides by default */
     width: 100%;
     height: auto;
-  }
-  
-  .slidingSlides.active {
+}
+
+.slidingSlides.active {
     display: block; /* Show active slide */
-  }
-  
+}
   /* Media query to hide elements on mobile screens */
   @media (max-width: 700px) {
     .thumbcontainer,
@@ -295,4 +248,62 @@ hr {
       }
     }
   }
-  
+
+/* Header, footer, and main styling */
+header, footer {
+    background-color: #004080;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT' 
+    
+    
+}
+
+header h1, footer p {
+    margin: 5px 0;
+    
+    color: #ffffff;
+}
+
+nav {
+    margin: 10px 0;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+#about {
+    margin: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+    border: 3px solid #004080;
+    width: 90px;
+    margin: 10px 0;
+    text-align: center;
+}
