@@ -29,7 +29,8 @@
        cart.forEach((cartItem, index) => {
            cartItems.innerHTML += `
                <li>
-                   <input type="checkbox" onclick="removeFromCart(${index})">
+    
+                  <p> remove <input type="checkbox" onclick="removeFromCart(${index})"> </p>
                    ${cartItem.item} - ₹${cartItem.price} x ${cartItem.quantity}
                    <button onclick="decreaseQuantity(${index})">-</button>
                    <button onclick="increaseQuantity(${index})">+</button>
@@ -72,20 +73,20 @@
    function updateTotal() {
        total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
    }
+// Function to toggle the checkout form based on cart total
+function toggleCheckout() {
+    const checkoutForm = document.getElementById('checkoutForm');
+    const cartMessage = document.getElementById('cartMessage');
 
-   // Function to toggle the checkout form based on cart total
-   function toggleCheckout() {
-       const checkoutForm = document.getElementById('checkoutForm');
-       const cartMessage = document.getElementById('cartMessage');
-       if (total > 499) {
-           checkoutForm.style.display = 'block';
-           cartMessage.innerHTML = 'Congratulations! Your cart total exceeds ₹499. Please proceed to checkout.';
-       } else {
-           checkoutForm.style.display = 'none';
-           cartMessage.innerHTML = '';
-       }
-   }
-
+    if (total >= 499) {
+        checkoutForm.style.display = 'block';
+        cartMessage.innerHTML = '<span style="color: green; background-color: white; padding: 2px;"> <b> Congratulations! Your cart total exceeds ₹499. Please proceed to checkout.<b> </span>';
+    } else {
+        checkoutForm.style.display = 'none';
+        const amountNeeded = 499 - total;
+        cartMessage.innerHTML = `Add ₹${amountNeeded.toFixed(2)}  <span style="color: green; background-color: white; padding: 2px;"> more to your cart to proceed to checkout.</span>`;
+    }
+}
 // Function to handle continuing shopping (hide the invoice)
 function continueShopping() {
     document.getElementById('invoice').style.display = 'none';
@@ -205,7 +206,24 @@ function generateInvoice() {
         </div>
     </div>
 </div>
+<style>
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: 3px solid #4CAF50; /* Green border */
+    padding: 10px 20px; /* Padding around text */
+    font-size: 20px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    border-color: #45a049; /* Darker green border on hover */
+}
+</style>
 <button onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
+
 
 <script>
     // Function to toggle the hidden payment content
