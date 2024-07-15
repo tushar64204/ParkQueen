@@ -194,35 +194,12 @@ main {
     .thumbcontainer,
     .sliding-container,
     .sliding-thumbnails,
-    .thumbnail,.floatingAnimation, .floatAnimation
+    .thumbnail,
     .slidingSlides {
       display: none !important;
     }
   }
-  .Floatingcontainer {
-    position: relative;
-    width: 100%;
-    height: 100px; /* Adjust container height as needed */
-  }
   
-  /* Floating Animation */
-  .floatingAnimation {
-    margin-left: 40%;
-    position: absolute;
-    bottom: 0; /* Adjust the position of the floating element relative to the container */
-    left: 30%; /* Position floating element horizontally in the center of the container */
-    transform: translateX(-50%);
-    animation: floatAnimation 3s ease-in-out infinite alternate; /* Adjust animation properties */
-  }
-  
-  @keyframes floatAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-20px); /* Adjust floating distance */
-    }
-  }
   
 
 /* Header, footer, and main styling */
@@ -283,3 +260,13 @@ hr {
     margin: 10px 0;
     text-align: center;
 }
+.logo{
+    width: 100px;
+    height: 100px;
+    margin-top: 40px;
+}
+@media (max-width: 768px) {
+    .logo {width: auto;
+        height: auto;
+        }
+    }
