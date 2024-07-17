@@ -1,95 +1,102 @@
-   // Initialize cart data from localStorage or an empty array
-   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-   let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+let cart = [];
+let total = 0;
 
-   // Event listener when the DOM content is fully loaded
-   document.addEventListener('DOMContentLoaded', () => {
-       displayCart();
-       toggleCheckout();
-   });
+function addToCart(name, price, id) {
+    const quantityInput = document.querySelector(`tr[data-id="${id}"] .quantity input`);
+    const quantity = parseInt(quantityInput.value);
+    const existingItem = cart.find(item => item.id === id);
 
-   // Function to add an item to the cart
-   function addToCart(item, price, id) {
-       const cartItem = cart.find(cartItem => cartItem.id === id);
-       if (cartItem) {
-           cartItem.quantity += 1;
-       } else {
-           cart.push({ item, price, id, quantity: 1 });
-       }
-       updateTotal();
-       localStorage.setItem('cart', JSON.stringify(cart));
-       displayCart();
-       toggleCheckout();
-   }
-
-   // Function to display cart items in the UI
-   function displayCart() {
-       const cartItems = document.getElementById('cartItems');
-       cartItems.innerHTML = '';
-       cart.forEach((cartItem, index) => {
-           cartItems.innerHTML += `
-               <li>
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({ name, price, id, quantity });
+    }
     
-                  <p> remove <input type="checkbox" onclick="removeFromCart(${index})"> </p>
-                   ${cartItem.item} - ₹${cartItem.price} x ${cartItem.quantity}
-                   <button onclick="decreaseQuantity(${index})">-</button>
-                   <button onclick="increaseQuantity(${index})">+</button>
-               </li>`;
-       });
-   }
+    updateCart();
+    updateCartStatus(id);
+    toggleCheckout();
+}
 
-   // Function to increase the quantity of an item in the cart
-   function increaseQuantity(index) {
-       cart[index].quantity += 1;
-       updateTotal();
-       localStorage.setItem('cart', JSON.stringify(cart));
-       displayCart();
-       toggleCheckout();
-   }
+function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+    total = 0;
+    
+    cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            ${item.name} - ₹${item.price} x ${item.quantity}
+            <button onclick="decreaseQuantity(${index})">-</button>
+            <button onclick="increaseQuantity(${index})">+</button>
+            <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(listItem);
+    });
 
-   // Function to decrease the quantity of an item in the cart
-   function decreaseQuantity(index) {
-       if (cart[index].quantity > 1) {
-           cart[index].quantity -= 1;
-       } else {
-           cart.splice(index, 1);
-       }
-       updateTotal();
-       localStorage.setItem('cart', JSON.stringify(cart));
-       displayCart();
-       toggleCheckout();
-   }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toggleCheckout();
+}
 
-   // Function to remove an item from the cart
-   function removeFromCart(index) {
-       cart.splice(index, 1);
-       updateTotal();
-       localStorage.setItem('cart', JSON.stringify(cart));
-       displayCart();
-       toggleCheckout();
-   }
+function updateCartStatus(id) {
+    const statusElement = document.getElementById(`status-${id}`);
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        statusElement.textContent = `In cart: ${existingItem.quantity}`;
+    } else {
+        statusElement.textContent = '';
+    }
+}
 
-   // Function to update the total cart value
-   function updateTotal() {
-       total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-   }
-// Function to toggle the checkout form based on cart total
+function increaseQuantity(index) {
+    cart[index].quantity += 1;
+    updateCart();
+}
+
+function decreaseQuantity(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+    } else {
+        cart.splice(index, 1);
+    }
+    updateCart();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
 function toggleCheckout() {
     const checkoutForm = document.getElementById('checkoutForm');
     const cartMessage = document.getElementById('cartMessage');
 
-    if (total >= 499) {
+    if (total >= 99) {
         checkoutForm.style.display = 'block';
-        cartMessage.innerHTML = '<span style="color: green; background-color: white; padding: 2px;"> <b> Congratulations! Your cart total exceeds ₹499. Please proceed to checkout.<b> </span>';
+        cartMessage.innerHTML = '<span style="color: green; background-color: white; padding: 2px;"> <b> Congratulations! Your cart total exceeds ₹99. Please proceed to checkout.</b> </span>';
     } else {
         checkoutForm.style.display = 'none';
-        const amountNeeded = 499 - total;
-        cartMessage.innerHTML = `Add ₹${amountNeeded.toFixed(2)}  <span style="color: green; background-color: white; padding: 2px;"> more to your cart to proceed to checkout.</span>`;
+        const amountNeeded = 99 - total;
+        cartMessage.innerHTML = `<span style="color: green; background-color: white; padding: 2px;"> Add ₹${amountNeeded.toFixed(2)}  more to your cart to proceed to checkout.</span>`;
     }
 }
-// Function to handle continuing shopping (hide the invoice)
+
 function continueShopping() {
     document.getElementById('invoice').style.display = 'none';
+}
+
+function filterItems() {
+    const searchValue = document.getElementById('searchBar').value.toLowerCase();
+    const items = document.querySelectorAll('.product-item');
+
+    items.forEach(item => {
+        const itemName = item.getAttribute('data-name').toLowerCase();
+        if (itemName.includes(searchValue)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 
 // Function to generate the invoice
@@ -131,8 +138,8 @@ function generateInvoice() {
         <body>
             <div class="invoice-container">
                 <div class="invoice-header">
-                    <h1>Jatayu copy House</h1>
-                    <img src="/images/jatayupng.png" alt="Jatayu copy House Logo" width="100"><br>
+                    <h1>Shabari Delights Restaurant</h1>
+                    <img src="/images/logo.png" alt="Shabari Delights Restaurant Logo" width="100"><br>
                     <h3>Invoice</h3>
                 </div>
                    <h1>Customer Details</h1>
@@ -221,8 +228,30 @@ button:hover {
     background-color: #45a049; /* Darker green on hover */
     border-color: #45a049; /* Darker green border on hover */
 }
+    .whatsapp-order-button {
+    background-color: #25d366; /* WhatsApp green */
+    color: white;
+    font-size: 18px; /* Increase the font size */
+    padding: 15px 30px; /* Increase the padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-order-button:hover {
+    background-color: #1ebc5a; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.whatsapp-order-button:active {
+    background-color: #128c4c; /* Even darker green when clicked */
+    transform: scale(0.95); /* Slightly decrease size when clicked */
+}
+
 </style>
-<button onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
+<button class="whatsapp-order-button" onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
+
 
 
 <script>
@@ -280,4 +309,15 @@ button:hover {
     const newWindow = window.open();
     newWindow.document.write(invoiceContent);
     newWindow.document.close();
+}
+function openModal(imageSrc) {
+    var modal = document.getElementById('zoomModal');
+    var modalImg = document.getElementById('img01');
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+}
+
+function closeModal() {
+    var modal = document.getElementById('zoomModal');
+    modal.style.display = "none";
 }

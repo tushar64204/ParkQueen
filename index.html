@@ -1,281 +1,193 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="images/jatayupng.png" href="images/jatayupng.png" />
-    <title>Stationery Catalogue</title>
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <title>Shabari Delights Restaurant</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  
+  
 </head>
 <body>
-    <style>
-  
-      </style>
-   
-    <div class="thumbcontainer">
-      <div class="sliding-container">
-        <img class="slidingSlides active" src="images/11.jpg">
-        <img class="slidingSlides" src="images/22.jpg">
-        <img class="slidingSlides" src="images/33.jpg">
-        <img class="slidingSlides" src="images/44.jpg">
-      </div>
-      <div class="sliding-thumbnails"></div>
-    </div>
-    
-    <script>
-      var slideIndex = 1;
-      showSlides(slideIndex);
-    
-      function plusSlides(n) {
-        showSlides((slideIndex += n));
-      }
-    
-      function currentSlide(n) {
-        showSlides((slideIndex = n));
-      }
-    
-      function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slidingSlides");
-        var thumbnails = document.querySelector(".sliding-thumbnails");
-        thumbnails.innerHTML = ""; // Clear existing thumbnails
-    
-        // Generate thumbnails for each slide
-        for (i = 0; i < slides.length; i++) {
-          var thumbnail = document.createElement("div");
-          thumbnail.classList.add("thumbnail");
-          thumbnail.innerHTML = `<img src="${slides[i].src}" onclick="currentSlide(${i + 1})">`;
-          thumbnails.appendChild(thumbnail);
-        }
-    
-        if (n > slides.length) {
-          slideIndex = 1;
-        }
-        if (n < 1) {
-          slideIndex = slides.length;
-        }
-        for (i = 0; i < slides.length; i++) {
-          slides[i].classList.remove("active"); // Hide all slides
-        }
-        slides[slideIndex - 1].classList.add("active"); // Show active slide
-    
-        // Mark active thumbnail
-        var thumbnailsArray = Array.from(document.querySelectorAll(".thumbnail"));
-        thumbnailsArray.forEach((thumbnail, index) => {
-          if (index === slideIndex - 1) {
-            thumbnail.classList.add("active");
-          } else {
-            thumbnail.classList.remove("active");
-          }
-        });
-      }
-    
-      // Auto play the slideshow
-      var slideInterval = setInterval(function () {
-        plusSlides(1);
-      }, 15000); // Change 5000 to the desired interval in milliseconds (e.g., 3000 for 3 seconds)
-    </script>
-  
-    
-<!-- anouncement -->
-<style>
-
-
-.announcement-bar {
-  background-color: #000000;
-  color: #fdfdfd;
-  padding: 10px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.slider {
-  display: flex;
-  animation: slide 20s linear infinite;
-}
-
-.slide {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-
-@keyframes slide {
-  0%, 100% {
-      transform: translateX(0);
-  }
-  25% {
-      transform: translateX(0);
-  }
-  50% {
-      transform: translateX(-100%);
-  }
-  75% {
-      transform: translateX(-100%);
-  }
-}
-     /* Add CSS styling for search bar */
-     #searchBar {
-            margin-bottom: 20px;
-            padding: 10px;
-            width: auto;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .product-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .product-item img {
-            max-width: 100px; /* Limit image size */
-            height: auto;
-            margin-right: 20px;
-        }
-        .product-item .details {
-            flex: 1;
-        }
-        .h1{
-            color: #fdfdfd;
-        }
-</style>
-
-<div class="announcement-bar">
-  <div class="slider">
-      <div class="slide"><a href="#cart" target="_blank" style="color: #fdfdfd;"> 📢Free delivery on Saturday! Buy now.📌</a></div>
-      <div class="slide"><a href="#today" target="_blank" style="color: #fdfdfd;"> 📑Pocket friendly Prices: Deal of the Day- click here!📌</a></div>
-      <div class="slide"><a href="about.html" target="_blank" style="color: #fdfdfd;"> 🥇Know about us by just clicking here!📌</a></div>
-  </div>
-</div>
-
- 
-
-
-  <header id="header">
-    
-    <h1>  Jatayu Copy House में आपका स्वागत है!
-      </h1>
-      <img src="images/jatayupng.png" width="100px" alt="Jatayu Logo">
-    <br><br>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="about.html">About Us</a>
-     
-        <a href="#footer">Contact</a>
-    </nav>
-</header>
-</div>
-
-<script>
-      // Function to filter items based on search input
-      function filterItems() {
-        var input, filter, ul, li, h3, i, txtValue;
-        input = document.getElementById('searchBar');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("productList");
-        li = ul.getElementsByTagName('li');
-
-        for (i = 0; i < li.length; i++) {
-            h3 = li[i].getElementsByTagName("h3")[0];
-            txtValue = h3.textContent || h3.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    }
-
-  function updateDateTime() {
-    const now = new Date();
-    const date = now.toDateString();
-    const time = now.toLocaleTimeString();
-    const dateTimeString = `${date} - ${time}`;
-    document.getElementById('date-time').innerText = dateTimeString;
-  }
-
-  // Update date and time every second
-  setInterval(updateDateTime, 1000);
-</script>
-
-
-    
-<br><br>
-    
-    <div class="container" id="home">
-         <!-- Search bar -->
-    <input type="text" id="searchBar" placeholder="Search for an item..." oninput="filterItems()">
-    
-        <p><a href="#cart">cart</a></p>
-        <h1>Stationery Catalogue</h1>
-        <ul id="productList">
-            <li>
-                <h3>Notebook</h3>
-                <p>Price: ₹100</p>
-                <img src="images/1.png" width="60%" alt="Notebook">
-                <button onclick="addToCart('Notebook', 100, 'NB100')">Add to Cart</button>
-                <br><br><button><a href="#cart">Manage your Cart</a></button>
-            </li>
-            <li>
-                <h3>Pen</h3>
-                <p>Price: ₹20</p>
-                <img src="images/2.png" width="60%" alt="Pen">
-                <button onclick="addToCart('Pen', 20, 'PEN20')">Add to Cart</button>
-                <br><br><button><a href="#cart">Manage your Cart</a></button>
-            </li>
-            <li>
-                <h3>Pencil</h3>
-                <p>Price: ₹10</p>
-                <img src="images/3.png" width="60%" alt="Pencil">
-                <button onclick="addToCart('Pencil', 10, 'PEN10')">Add to Cart</button>
-                <br><br><button><a href="#cart">Manage your Cart</a></button>
-            </li>
-            <li>
-                <h3>Eraser</h3>
-                <p>Price: ₹5</p>
-                <img src="images/4.png" width="60%" alt="Eraser">
-                <button onclick="addToCart('Eraser', 5, 'ER05')">Add to Cart</button>
-                <br><br><button><a href="#cart">Manage your Cart</a></button>
-            </li>
-            <li>
-                <h3>Sharpener</h3>
-                <p>Price: ₹15</p>
-                <img src="images/5.png" width="60%" alt="Sharpener">
-                <button onclick="addToCart('Sharpener', 15, 'SH15')">Add to Cart</button>
-                <br><br><button><a href="#cart">Manage your Cart</a></button>
-            </li>
-        </ul>
-        <h2>Cart</h2>
-        <h3>Minimum cart value 499</h3>
-        <div id="cart">
-    <ul id="cartItems"></ul>
-    <p id="cartMessage"></p>
+    <!-- Announcement bar
+    <div class="announcement-bar">
+        <div class="slider">
+            <div class="slide"><a href="#cart" target="_blank"> 📢 Free delivery on Saturday! Buy now. 📌</a></div>
+            <div class="slide"><a href="#today" target="_blank"> 📑 Pocket friendly Prices: Deal of the Day - click here! 📌</a></div>
+            <div class="slide"><a href="about.html" target="_blank"> 🥇 Know about us by just clicking here! 📌</a></div>
         </div>
-    <form id="checkoutForm" style="display: none;">
-        <h2>Checkout</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-        <label for="address">Address:</label>
-        <input type="text" id="address" required>
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" required>
-        <label for="alternateContact">Alternate Contact:</label>
-        <input type="text" id="alternateContact">
-        <button type="button" onclick="generateInvoice()">Generate Invoice</button>
-    </form>
-    </div>
+    </div> -->
+<br>
+
+    <!-- Header section -->
+    <header id="header">
+        <h1>Shabari Delights Restaurant में आपका स्वागत है!</h1>
+        <img src="images/logo.png" width="100px" alt="Logo">
+        <br><br>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="#footer">Contact</a>
+        </nav>
+    </header>
+
+  <!-- Main content section -->
+<div class="container" id="home">
+  <!-- Search bar -->
+  <input type="text" id="searchBar" placeholder="Search for an item..." oninput="filterItems()">
+  
+  <!-- Stationery Catalogue -->
+  <h2>DIGITAL MENU CARD </h2>
+  <p><b>with UPI payment</b></p>
+  <table id="productTable">
+    <!-- <div class="thead">
+    <thead>
+      <tr>
+          <th>Icon</th>
+          <th>Item Details</th>
+          <th>Quantity & Add to Cart</th>
+          <th>Cart Status</th>
+      </tr>
+  </thead>
+</div> -->
+<br><br>
+      <tbody>
+          <!-- Product 1 -->
+          <tr class="product-item" data-name="Complete Thali" data-price="100" data-id="CT120">
+              <td>
+                  <img src="images/thali.png" alt="Complete Thali Icon" width="150" class="zoom" onclick="openModal('images/thali.png')">
+              </td>
+              <td><b>घर की थाली Complete Thali</b></td>
+              <td>Dal Makhni, Kantola ki sabji/any other seasonal sukhi sabji, Rice, Raita, Tandoori Roti</td>
+              <td>₹120</td>
+              <td class="quantity">
+                  <input type="number" value="1" min="1">
+              </td>
+              <td>
+                  <button onclick="addToCart('Complete Thali', 120, 'CT120')">Add to Cart</button>
+              </td>
+              <td class="cart-status" id="status-CT120"></td>
+          </tr>
+          
+          <!-- Product 2 -->
+          <tr class="product-item" data-name="Chana Daal Full Plate" data-price="90" data-id="CDFP90">
+              <td>
+                  <img src="images/chnadaal.png" alt="Chana Daal Full Plate Icon" width="150" class="zoom" onclick="openModal('images/chnadaal.png')">
+              </td>
+              <td><b>चना दाल प्लेट Chana Daal Full Plate</b>
+              <td>चना दाल Full Plate Chana Daal Full Plate</td>
+             
+              <td>₹90</td>
+              <td class="quantity">
+                  <input type="number" value="1" min="1">
+              </td>
+              <td>
+                  <button onclick="addToCart('Chana Daal Full Plate', 90, 'CDFP90')">Add to Cart</button>
+              </td>
+              <td class="cart-status" id="status-CDFP90"></td>
+          </tr>
+          
+          <!-- Product 3 -->
+          <tr class="product-item" data-name="Chana Daal Half Plate" data-price="60" data-id="CDHP60">
+              <td>
+                  <img src="images/halfchnadaal.png" alt="Chana Daal Half Plate Icon" width="150" class="zoom" onclick="openModal('images/halfchnadaal.png')">
+              </td>
+              <td><b>चना दाल प्लेट Chana Daal Half Plate</b>
+              <td>चना दाल Half Plate Chana Daal Half Plate</td>
+              
+              <td>₹60</td>
+              <td class="quantity">
+                  <input type="number" value="1" min="1">
+              </td>
+              <td>
+                  <button onclick="addToCart('Chana Daal Half Plate', 60, 'CDHP60')">Add to Cart</button>
+              </td>
+              <td class="cart-status" id="status-CDHP60"></td>
+          </tr>
+          
+          <!-- Product 4 -->
+          <tr class="product-item" data-name="Simple Roti" data-price="10" data-id="SR10">
+              <td>
+                  <img src="images/roti.png" alt="Simple Roti Icon" width="150" class="zoom" onclick="openModal('images/roti.png')">
+              </td>
+              <td><b>सादा रोटी Simple Roti</b>
+              
+              <td>Plain Roti</td>
+              <td>₹10</td>
+              <td class="quantity">
+                  <input type="number" value="1" min="1">
+              </td>
+              <td>
+                  <button onclick="addToCart('Simple Roti', 10, 'SR10')">Add to Cart</button>
+              </td>
+              <td class="cart-status" id="status-SR10"></td>
+          </tr>
+          
+          <!-- Product 5 -->
+          <tr class="product-item" data-name="Naan Roti" data-price="20" data-id="NR20">
+              <td>
+                  <img src="images/naanroti.png" alt="Naan Roti Icon" width="150" class="zoom" onclick="openModal('images/naanroti.png')">
+              </td>
+              <td><b>नान रोटी Naan Roti</b>
+             
+              <td>Butter Naan</td>
+              <td>₹20</td>
+              <td class="quantity">
+                  <input type="number" value="1" min="1">
+              </td>
+              <td>
+                  <button onclick="addToCart('Naan Roti', 20, 'NR20')">Add to Cart</button>
+              </td>
+              <td class="cart-status" id="status-NR20"></td>
+          </tr>
+          
+          <!-- Add more items here -->
+      </tbody>
+  </table>
+</div>
+
+<!-- The Modal -->
+<div id="zoomModal" class="zoom-modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="zoom-modal-content" id="img01">
+</div>
+
+<!-- Cart section -->
+<div id="cart">
+  <h2>Cart</h2>
+  <ul id="cartItems"></ul>
+  <p id="cartMessage"></p>
+</div>
+
+<!-- Checkout form section -->
+<div id="checkoutForm">
+  <h2 style="color: aliceblue;">Checkout</h2>
+  <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      <label for="address">Address:</label>
+      <input type="text" id="address" required>
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" required>
+      <label for="alternateContact">Alternate Contact:</label>
+      <input type="text" id="alternateContact">
+      <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+  </form>
+</div>
+
+
+    <!-- Footer section -->
     <footer id="footer">
-        <img src="images/jatayupng.png" width="100px" alt="Jatayu Logo">
+       
         <p>Contact us at: <a href="mailto:msmemitratushar@gmail.com" style="color: white;">msmemitratushar@gmail.com</a></p>
         <p>Phone: 981-740-9607</p>
         <p>Address: Rohtak, Gohana Rd</p>
         <br>
-        <p>Copyright &copy; 2022 Jatayu Copy House</p>
-        <br>
+        <p>Copyright &copy; 2022 Shabari Delights Restaurant</p>
     </footer>
+
+    <!-- JavaScript file inclusion (if any) -->
+    <script src="script.js"></script>
+ 
 </body>
 </html>
