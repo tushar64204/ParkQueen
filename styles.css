@@ -499,4 +499,18 @@ hr {
     #checkoutForm button:hover {
         background-color: #6d4c41; /* Darker brown on hover */
     }
-    
+    .hidden {
+        display: none;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }

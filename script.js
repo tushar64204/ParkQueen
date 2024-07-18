@@ -144,7 +144,7 @@ function generateInvoice() {
                 </div>
                    <h1>Customer Details</h1>
                 <p>Name: ${name}</p>
-                <p>Address: ${address}</p>
+                <p>Address/Table no.: ${address}</p>
                 <p>Contact Number: ${contact}</p>
                 <p>Alternate Contact Number: ${alternateContact}</p>
                 <table class="invoice-table">
@@ -288,7 +288,7 @@ button:hover {
     // Function to send order details on WhatsApp
     function sendOrderOnWhatsApp() {
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-        const message = \`Order Details:\\nName: ${name}\\nAddress: ${address}\\nContact: ${contact}\\nTotal: ₹${total}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
+        const message = \`Order Details:\\nName: ${name}\\nAddress/Table: ${address}\\nContact: ${contact}\\nTotal: ₹${total}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
 
         const url = \`https://wa.me/919817409607?text=\${encodeURIComponent(message)}\`;
         window.open(url, '_blank');
@@ -320,4 +320,26 @@ function openModal(imageSrc) {
 function closeModal() {
     var modal = document.getElementById('zoomModal');
     modal.style.display = "none";
+}
+function showInputField() {
+    const diningOption = document.getElementById('diningOption').value;
+    const responseGroup = document.getElementById('responseGroup');
+    const responseLabel = document.getElementById('responseLabel');
+    const address = document.getElementById('address');
+
+    responseGroup.classList.add('hidden');
+
+    if (diningOption) {
+        responseGroup.classList.remove('hidden');
+
+        if (diningOption === 'package') {
+            responseLabel.innerText = 'Enter your address:';
+            address.setAttribute('name', 'address');
+            address.setAttribute('placeholder', 'Enter your address');
+        } else if (diningOption === 'eat') {
+            responseLabel.innerText = 'Enter your table number:';
+            address.setAttribute('name', 'tableNumber');
+            address.setAttribute('placeholder', 'Enter your table number');
+        }
+    }
 }

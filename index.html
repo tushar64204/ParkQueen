@@ -173,8 +173,19 @@
   <form>
       <label for="name">Name:</label>
       <input type="text" id="name" required>
-      <label for="address">Address:</label>
-      <input type="text" id="address" required>
+      <div class="form-group">
+        <label for="diningOption">Choose your dining option:</label>
+        <select id="diningOption" onchange="showInputField()">
+            <option value="">Select an option</option>
+            <option value="package">Packaging</option>
+            <option value="eat">Eat here</option>
+        </select>
+    </div>
+    <div class="form-group hidden" id="responseGroup">
+        <label for="address" id="responseLabel">Enter your address:</label>
+        <input type="text" id="address" name="response" required>
+    </div>
+     
       <label for="contact">Contact:</label>
       <input type="text" id="contact" required>
       <label for="alternateContact">Alternate Contact:</label>
