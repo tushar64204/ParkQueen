@@ -164,7 +164,7 @@ function generateInvoice() {
     cart.forEach(cartItem => {
         invoiceContent += `
             <tr>
-                <td>${cartItem.item}</td>
+                <td>${cartItem.name}</td>
                 <td>${cartItem.id}</td>
                 <td>${cartItem.quantity}</td>
                 <td>₹${cartItem.price}</td>
@@ -288,7 +288,7 @@ button:hover {
     // Function to send order details on WhatsApp
     function sendOrderOnWhatsApp() {
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-        const message = \`Order Details:\\nName: ${name}\\nAddress: ${address}\\nContact: ${contact}\\nTotal: ₹${total}\\nItems: ${cart.map(item => item.item + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
+        const message = \`Order Details:\\nName: ${name}\\nAddress: ${address}\\nContact: ${contact}\\nTotal: ₹${total}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
 
         const url = \`https://wa.me/919817409607?text=\${encodeURIComponent(message)}\`;
         window.open(url, '_blank');
