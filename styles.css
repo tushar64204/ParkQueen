@@ -385,7 +385,7 @@ hr {
     /* Style for td elements */
     #productTable td {
         width: 100%; /* Full width for each block td */
-        border: none; /* Remove border from td elements */
+        border: 1px; /* Remove border from td elements */
         margin-bottom: 10px; /* Spacing between table data */
     }
 
