@@ -328,6 +328,11 @@ hr {
     .logo {width: auto;
         height: auto;
         }
+
+
+   .waiter {
+    width: 15%;
+   } 
     }
     @media only screen and (max-width: 600px) {
         /* Adjust table header and cell widths */
@@ -376,7 +381,7 @@ hr {
     /* Adjust individual th widths for clarity */
     #productTable th {
         width: 100%; /* Full width for each block th */
-        background-color: #f2f2f2; /* Background color for header */
+        background-color: #0a2c12; /* Background color for header */
         font-weight: bold; /* Example styling for header */
         margin-bottom: 5px; /* Spacing between header cells */
         padding: 10px; /* Padding for header cells */
@@ -385,20 +390,22 @@ hr {
     /* Style for td elements */
     #productTable td {
         width: 100%; /* Full width for each block td */
-        border: 1px; /* Remove border from td elements */
-        margin-bottom: 10px; /* Spacing between table data */
+        border: 10px; /* Remove border from td elements */
+        margin-bottom: 0px; /* Spacing between table data */
     }
 
     /* Ensure product images and buttons are appropriately sized */
     .product-item img {
         max-width: 100px; /* Adjust size as needed */
+        align-items: center;
         height: auto;
         margin-bottom: 10px;
+        border-radius: 10%;
     }
 
     /* Style for item details */
     .product-item .item-details {
-        margin-bottom: 10px;
+        margin-bottom: 1px;
         font-weight: bold; /* Example styling */
     }
 
@@ -419,7 +426,7 @@ hr {
 
     /* Adjust padding and margins for better spacing */
     .product-item {
-        margin-bottom: 20px;
+        margin-bottom: 2px;
     }
 
     /* Style for cart status */
@@ -439,7 +446,7 @@ hr {
     
         .product-item .item-details {
             text-align: left; /* Align text in details column */
-            margin-bottom: 10px;
+            margin-bottom: 1px;
         }
     
         .product-item .quantity input {
@@ -514,3 +521,9 @@ hr {
         padding: 8px;
         box-sizing: border-box;
     }
+
+
+    .waiter {
+            margin: 0 auto;
+            }
+  
