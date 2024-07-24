@@ -1,529 +1,271 @@
-/* Reset default margin and padding */
-body, html {
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #FEEED4;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #311708; /* Light background color */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff; /* White background for content */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow for container */
-}
-
-h1, h2, h3 {
-    color: #333; /* Dark text color */
-}
-
-/* Styling for the product list */
-#productList {
-    list-style-type: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
-    gap: 20px;
-}
-
-      /* Search Bar */
-      #searchBar {
-        margin: 20px;
-        padding: 10px;
-        width: calc(100% - 40px);
-        font-size: 16px;
-        box-sizing: border-box;
-    }
-#productList li {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-#productList li:hover {
-    transform: translateY(-5px);
-}
-
-#productList li img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-#productTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-#productTable th, #productTable td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-#productTable th {
-    background-color: #f2f2f2;
-}
-
-#productTable input[type="number"] {
-    width: 50px;
-    padding: 5px;
-    text-align: center;
-}
-
-#productTable button {
-    padding: 8px 16px;
-    background-color: #4CAF50;
+header {
+    background-image: url('images/bhoj.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
     color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#productTable button:hover {
-    background-color: #45a049;
-}
-#productTable img {
-    max-width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-#productTable img:hover {
-    transform: scale(1.1); /* Adjust the scale factor as needed */
-}
-
-
-
-button {
-    background-color: #007bff; /* Blue button color */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Styling for the cart */
-#cartItems {
-    list-style-type: none;
-    padding: 0;
-}
-.cart-status {
-    color: green;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 50px;
     font-weight: bold;
-}
-
-#cartItems li {
-    background-color: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 5px rgba(233, 229, 229, 0.1);
-}
-
-#cartMessage {
-    font-style: italic;
-    margin-top: 10px;
-}
-
-form {
-    margin-top: 20px;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-form input[type="text"] {
-    width: calc(100% - 12px); /* Adjust input width */
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-form button {
-    background-color: #28a745; /* Green button color */
-}
-
-form button:hover {
-    background-color: #218838; /* Darker green on hover */
-}
-
- /* Zoom Effect */
- .zoom {
-    transition: transform 0.2s;
-    cursor: pointer;
-}
-
-.zoom:hover {
-    transform: scale(1.5);
-}
-
-.zoom-modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
+    text-shadow: 5px 5px 10px rgba(204, 21, 21, 0.6);
+    box-shadow: inset 50px 50px 100px rgba(32, 5, 5, 0.5);
+    position: relative;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.9);
+    height: 300px;
 }
-
-.zoom-modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
+footer p {
+    margin: 5px 4px;
+    color: #ffffff;
+    padding-bottom: 0px;
 }
-
-.zoom-modal-content:hover {
-    transform: scale(1.5);
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-   /* Responsive Table */
-      .table-container {
-          width: 100%;
-          overflow-x: auto;
-          margin: 20px 0;
-      }
-
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 10px 0;
-        background-color: #000000;
-        z-index: 1000;
-        text-align: center;
-    }
-
-    nav ul {
-        flex-direction: row;
-    }
-
-    nav li {
-        margin-right: 0;
-        margin-bottom: 10px;
-        color: #f0f0f0;
-    }
-
-    nav a {
-        padding: 10px;
-        color: #f0f0f0;
-        
-    }
-   footer p {
-        margin: 50px 40px;
-        color: #ffffff;
-        padding-bottom: 10px;
-    }
-}
-
-main {
-    margin: 20px 0 80px 0; /* Adjust bottom margin to ensure main content is not overlapped by nav */
-}
-
-/* Header, footer, and main styling */
-header, footer {
+footer {
     background-color: #000000;
     color: white;
-    padding: 5px 10px;
+    padding: 0px 0px;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT' 
     
     
 }
 
-header h1, footer p {
-    margin: 5px 0;
-    
-    color: #ffffff;
+#checkoutForm {
+    background-color: #3e2723; /* Dark brown background color */
+    color: #fff; /* White text color for contrast */
+    padding: 20px; /* Padding for inner content */
+    margin: 20px; /* Margin for spacing */
 }
 
-nav {
-    margin: 10px 0;
+#checkoutForm h2 {
+    font-size: 24px; /* Example: Larger font size for heading */
+    margin-bottom: 20px; /* Bottom margin for spacing */
 }
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
+#checkoutForm form {
+    margin-top: 10px; /* Top margin for form elements */
 }
 
-nav a:hover {
-    text-decoration: underline;
+#checkoutForm label {
+    display: block; /* Display labels as block for stacking */
+    margin-bottom: 8px; /* Bottom margin for spacing between labels */
 }
 
-main {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+#checkoutForm input {
+    width: 100%; /* Full width input fields */
+    padding: 8px; /* Padding for input fields */
+    margin-bottom: 12px; /* Bottom margin for spacing between inputs */
+    box-sizing: border-box; /* Include padding in input width */
+    border: 1px solid #ccc; /* Example: Light border for inputs */
 }
 
-#about {
-    margin: 20px 0;
+#checkoutForm button {
+    padding: 10px 20px; /* Padding for button */
+    background-color: #8d6e63; /* Brownish button color */
+    color: #fff; /* White text color for button */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Pointer cursor on hover */
 }
+
+#checkoutForm button:hover {
+    background-color: #6d4c41; /* Darker brown on hover */
+}
+.hidden {
+    display: none;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+
+.waiter {
+        margin: 0 auto;
+        }
+
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.295);
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
-hr {
-    border: 3px solid #004080;
-    width: 90px;
-    margin: 10px 0;
+.search-bar {
+    margin: 20px 0;
     text-align: center;
 }
-.logo{
-    width: 100px;
-    height: 100px;
+
+.search-bar input {
+    padding: 15px;
+    width: 90%;
+    max-width: 500px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #DAA520;
+}
+
+.menu-headings-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+.menu-headings {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.menu-headings div {
+    position: relative;
+    margin-right: 10px;
+}
+
+.menu-headings h2 {
+    cursor: pointer;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.menu-headings img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.menu-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+section {
     margin-top: 40px;
 }
-@media (max-width: 768px) {
-    .logo {width: auto;
-        height: auto;
-        }
 
-
-   .waiter {
-    width: 15%;
-   } 
-    }
-    @media only screen and (max-width: 600px) {
-        /* Adjust table header and cell widths */
-        #productTable th, #productTable td {
-            font-size: 12px;
-            text-align: center;
-        }
-    
-        /* Ensure table rows stack vertically */
-        #productTable td, #productTable th {
-            display: block;
-            padding: 10px;
-            border: none;
-        }
-        /* Default table styles */
-#productTable {
+table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 300px; /* Adjust minimum width as needed */
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#productTable th, #productTable td {
-    border: 1px solid #ddd; /* Add border for better visibility */
-    padding: 10px;
-    text-align: center; /* Center align text in headers and cells */
+th, td {
+    padding: 12px;
+    border: 1px solid #DAA520;
+    text-align: center;
 }
 
-/* Media Queries for Mobile */
-@media only screen and (max-width: 600px) {
-    /* Hide thead on mobile screens */
-    .thead {
-        display: none;
-    }
+th {
+    background-color: #DAA520;
+    color: white;
+}
 
-    /* Display tr and th as block elements */
-    #productTable tr {
+.product-item img.waiter {
+    width: 20px;
+    height: 20px;
+}
+@media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
         display: block;
-        margin-bottom: 10px; /* Add spacing between table rows */
+    }
+    
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
 
-    #productTable th, #productTable td {
-        display: block;
-        text-align: left; /* Adjust alignment for better readability */
-    }
-
-    /* Adjust individual th widths for clarity */
-    #productTable th {
-        width: 100%; /* Full width for each block th */
-        background-color: #0a2c12; /* Background color for header */
-        font-weight: bold; /* Example styling for header */
-        margin-bottom: 5px; /* Spacing between header cells */
-        padding: 10px; /* Padding for header cells */
-    }
-
-    /* Style for td elements */
-    #productTable td {
-        width: 100%; /* Full width for each block td */
-        border: 10px; /* Remove border from td elements */
-        margin-bottom: 0px; /* Spacing between table data */
-    }
-
-    /* Ensure product images and buttons are appropriately sized */
-    .product-item img {
-        max-width: 100px; /* Adjust size as needed */
-        align-items: center;
-        height: auto;
-        margin-bottom: 10px;
-        border-radius: 10%;
-    }
-
-    /* Style for item details */
-    .product-item .item-details {
-        margin-bottom: 1px;
-        font-weight: bold; /* Example styling */
-    }
-
-    .product-item .quantity input {
-        width: calc(100% - 20px);
+    tr {
+        border: 1px solid #DAA520;
         margin-bottom: 10px;
     }
-
-    .product-item button {
-        width: calc(100% - 20px);
-        margin-bottom: 10px;
-        background-color: #4CAF50;
-        color: white;
+    
+    td {
         border: none;
-        cursor: pointer;
+        border-bottom: 1px solid #DAA520;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    td:before {
+        position: absolute;
+        top: 12px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+        font-weight: bold;
+    }
+
+    td:last-child {
+        border-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    th, td {
+        padding: 8px;
+    }
+
+    td:before {
+        top: 8px;
+    }
+}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    header {
+        font-size: 28px;
+        height: 250px;
+        padding: 15px 0;
+    }
+    
+    .container {
+        width: 95%;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .menu-headings h2 {
+        font-size: 16px;
         padding: 8px 16px;
     }
-
-    /* Adjust padding and margins for better spacing */
-    .product-item {
-        margin-bottom: 2px;
-    }
-
-    /* Style for cart status */
-    .cart-status {
-        font-weight: bold;
-        color: green;
-    }
 }
-    
-        /* Ensure product images and buttons are appropriately sized */
-        .product-item img {
-            max-width: 60px;
-            height: auto;
-            margin-right: 0;
-            margin-bottom: 10px;
-        }
-    
-        .product-item .item-details {
-            text-align: left; /* Align text in details column */
-            margin-bottom: 1px;
-        }
-    
-        .product-item .quantity input {
-            width: calc(100% - 20px);
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-    
-        .product-item button {
-            width: calc(100% - 20px);
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-    
-        /* Adjust padding and margins for better spacing */
-        .product-item {
-            margin-bottom: 20px;
-        }
-    }
-    #checkoutForm {
-        background-color: #3e2723; /* Dark brown background color */
-        color: #fff; /* White text color for contrast */
-        padding: 20px; /* Padding for inner content */
-        margin: 20px; /* Margin for spacing */
-    }
-    
-    #checkoutForm h2 {
-        font-size: 24px; /* Example: Larger font size for heading */
-        margin-bottom: 20px; /* Bottom margin for spacing */
-    }
-    
-    #checkoutForm form {
-        margin-top: 10px; /* Top margin for form elements */
-    }
-    
-    #checkoutForm label {
-        display: block; /* Display labels as block for stacking */
-        margin-bottom: 8px; /* Bottom margin for spacing between labels */
-    }
-    
-    #checkoutForm input {
-        width: 100%; /* Full width input fields */
-        padding: 8px; /* Padding for input fields */
-        margin-bottom: 12px; /* Bottom margin for spacing between inputs */
-        box-sizing: border-box; /* Include padding in input width */
-        border: 1px solid #ccc; /* Example: Light border for inputs */
-    }
-    
-    #checkoutForm button {
-        padding: 10px 20px; /* Padding for button */
-        background-color: #8d6e63; /* Brownish button color */
-        color: #fff; /* White text color for button */
-        border: none; /* Remove default button border */
-        cursor: pointer; /* Pointer cursor on hover */
-    }
-    
-    #checkoutForm button:hover {
-        background-color: #6d4c41; /* Darker brown on hover */
-    }
-    .hidden {
-        display: none;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    input, select {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-    }
-
-
-    .waiter {
-            margin: 0 auto;
-            }
-  

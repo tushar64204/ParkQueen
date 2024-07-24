@@ -1,228 +1,422 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <title>Shabari Delights Restaurant</title>
-    <link rel="stylesheet" href="styles.css">
-  
-  
+    <title>Menu Card</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+        section {
+            margin-top: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .product-item img.waiter {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    <script>
+        // Add your JavaScript functions here
+        function addToCart(name, price, id) {
+            const quantityElement = document.querySelector(`[data-id='${id}'] .quantity input`);
+            const quantity = parseInt(quantityElement.value);
+            const statusElement = document.getElementById(`status-${id}`);
+            
+            if (quantity > 0) {
+                statusElement.innerHTML = `<img src="images/ok.png" class="waiter"> Added to Cart (${quantity})`;
+            } else {
+                statusElement.innerHTML = `<img src="images/waiter.png" class="waiter">`;
+            }
+        }
+
+        function searchItems() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const items = document.querySelectorAll('.product-item');
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                if (itemName.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-    <!-- Announcement bar
-    <div class="announcement-bar">
-        <div class="slider">
-            <div class="slide"><a href="#cart" target="_blank"> 📢 Free delivery on Saturday! Buy now. 📌</a></div>
-            <div class="slide"><a href="#today" target="_blank"> 📑 Pocket friendly Prices: Deal of the Day - click here! 📌</a></div>
-            <div class="slide"><a href="about.html" target="_blank"> 🥇 Know about us by just clicking here! 📌</a></div>
-        </div>
-    </div> -->
-<br>
-
-    <!-- Header section -->
-    <header id="header">
-        <h1>Shabari Delights Restaurant में आपका स्वागत है!</h1>
-        <img src="images/logo.png" width="100px" alt="Logo">
-        <br><br>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="#footer">Contact</a>
-        </nav>
+    <header>
+        The ParkQueen Hotel & Resort's Digital Menu
     </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="searchItems()" placeholder="Search for items...">
+        </div>
+        <section id="beverages">
+            <h2>Beverages</h2>
+            <table id="beveragesTable">
+                <thead>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Beverages Items -->
+                    <tr class="product-item" data-name="Soda" data-price="55" data-id="S55">
+                        <td><b>Soda</b></td>
+                        <td>₹55</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-S55"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Soda', 55, 'S55')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Packed Drinking Water" data-price="85" data-id="PDW85">
+                        <td><b>Packed Drinking Water</b></td>
+                        <td>₹85</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PDW85"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Packed Drinking Water', 85, 'PDW85')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Aerated Water" data-price="85" data-id="AW85">
+                        <td><b>Aerated Water</b></td>
+                        <td>₹85</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AW85"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Aerated Water', 85, 'AW85')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Diet Coke" data-price="115" data-id="DC115">
+                        <td><b>Diet Coke</b></td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DC115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Diet Coke', 115, 'DC115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Canned Juice" data-price="155" data-id="CJ155">
+                        <td><b>Canned Juice</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CJ155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Canned Juice', 155, 'CJ155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tonic Water" data-price="155" data-id="TW155">
+                        <td><b>Tonic Water</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TW155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tonic Water', 155, 'TW155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ginger Ale" data-price="155" data-id="GA155">
+                        <td><b>Ginger Ale</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GA155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ginger Ale', 155, 'GA155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pudina Shikanji / Jal Jeera" data-price="155" data-id="PSJJ155">
+                        <td><b>Pudina Shikanji / Jal Jeera</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PSJJ155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pudina Shikanji / Jal Jeera', 155, 'PSJJ155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fresh Lime Water / Soda" data-price="155" data-id="FLWS155">
+                        <td><b>Fresh Lime Water / Soda</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FLWS155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fresh Lime Water / Soda', 155, 'FLWS155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Red Bull" data-price="225" data-id="RB225">
+                        <td><b>Red Bull</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RB225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Red Bull', 225, 'RB225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hot Drinks (Tea / Coffee)" data-price="65" data-id="HDTC65">
+                        <td><b>Hot Drinks (Tea / Coffee)</b></td>
+                        <td>₹65</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HDTC65"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hot Drinks (Tea / Coffee)', 65, 'HDTC65')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Flavoured Iced Tea (Peach / Lemon)" data-price="105" data-id="FITPL105">
+                        <td><b>Flavoured Iced Tea (Peach / Lemon)</b></td>
+                        <td>₹105</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FITPL105"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Flavoured Iced Tea (Peach / Lemon)', 105, 'FITPL105')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Masala Tea" data-price="115" data-id="MT115">
+                        <td><b>Masala Tea</b><br>Good for immunity</td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MT115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Masala Tea', 115, 'MT115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Not far from home Lemon Tea" data-price="115" data-id="NFH115">
+                        <td><b>Not far from home Lemon Tea</b><br>Works for iron absorption & weight loss</td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-NFH115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Not far from home Lemon Tea', 115, 'NFH115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Lemon Grass Tea" data-price="115" data-id="LGT115">
+                        <td><b>Lemon Grass Tea</b><br>Works for strengthen, immunity & digestion</td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LGT115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Lemon Grass Tea', 115, 'LGT115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cappuccino" data-price="195" data-id="C195">
+                        <td><b>Cappuccino</b><br>One third of coffee, one third of milk & one third of froth</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cappuccino', 195, 'C195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Café Latte" data-price="195" data-id="CL195">
+                        <td><b>Café Latte</b><br>Less coffee more milk</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CL195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Café Latte', 195, 'CL195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Espresso | Black" data-price="195" data-id="EB195">
+                        <td><b>Espresso | Black</b><br>Wake up with Shots</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-EB195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Espresso | Black', 195, 'EB195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cold Coffee (Ask Your Server)" data-price="195" data-id="CCAYS195">
+                        <td><b>Cold Coffee (Ask Your Server)</b><br>With Or Without Ice Cream</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCAYS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cold Coffee (Ask Your Server)', 195, 'CCAYS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Milk Shakes (Ask Your Server)" data-price="195" data-id="CMSAYS195">
+                        <td><b>Choice of Milk Shakes (Ask Your Server)</b><br>Vanilla/Strawberry/Chocolate/Banana/Mango</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CMSAYS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Milk Shakes (Ask Your Server)', 195, 'CMSAYS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Lassi (Ask Your Server)" data-price="195" data-id="CLAYS195">
+                        <td><b>Choice of Lassi (Ask Your Server)</b><br>Sweet/Salted/Masala/Plain/Mango</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CLAYS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Lassi (Ask Your Server)', 195, 'CLAYS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fresh Juice" data-price="195" data-id="FJ195">
+                        <td><b>Fresh Juice</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FJ195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fresh Juice', 195, 'FJ195')">Add to Cart</button></td>
+                    </tr>
+                    <!-- End of Beverages Items -->
+                </tbody>
+            </table>
+            <p>* Government taxes extra as per actual | ** In case of any allergies, kindly inform your server before.</p>
+            <p>* Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!!</p>
+        </section>
+        <section id="cocktails">
+            <h2>Cocktails</h2>
+            <table class="menu-table">
+                <tbody>
+                    <tr class="product-item" data-name="Margarita" data-price="495" data-id="C_Margarita">
+                        <td><b>Margarita</b><br>Mexican Cocktail Consisting Tequila, Cointreau And Lime Juice</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_Margarita"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Margarita', 495, 'C_Margarita')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Martini" data-price="495" data-id="C_Martini">
+                        <td><b>Martini</b><br>Classic, Green Apple, Fresh Kiwi, Chocolate, Lemon Grass & Red Chilly</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_Martini"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Martini', 495, 'C_Martini')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Caprioska" data-price="495" data-id="C_Caprioska">
+                        <td><b>Caprioska</b><br>Vodka Based Cocktail With A Twist Of Lime & Sugar</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_Caprioska"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Caprioska', 495, 'C_Caprioska')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Long Island Ice Tea" data-price="495" data-id="C_LongIslandIceTea">
+                        <td><b>Long Island Ice Tea</b><br>Combination Of All White Spirits, Top Up With Cola</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_LongIslandIceTea"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Long Island Ice Tea', 495, 'C_LongIslandIceTea')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Love In The Kiss" data-price="495" data-id="C_LoveInTheKiss">
+                        <td><b>Love In The Kiss</b><br>A Great Combination Of Vodka, Martini & Ginger Ale</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_LoveInTheKiss"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Love In The Kiss', 495, 'C_LoveInTheKiss')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Gibson" data-price="495" data-id="C_Gibson">
+                        <td><b>Gibson</b><br>Gin & Dry Vermouth On The Rocks</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_Gibson"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Gibson', 495, 'C_Gibson')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Vodka Martini" data-price="495" data-id="C_VodkaMartini">
+                        <td><b>Vodka Martini</b><br>Shaken Well.Vodka With Dry Vermouth</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_VodkaMartini"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Vodka Martini', 495, 'C_VodkaMartini')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="White Russian" data-price="525" data-id="C_WhiteRussian">
+                        <td><b>White Russian</b><br>Vodka With Kahlua & Cream</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_WhiteRussian"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('White Russian', 525, 'C_WhiteRussian')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mind Eraser" data-price="455" data-id="C_MindEraser">
+                        <td><b>Mind Eraser</b><br>Combination Of 4 White Spirits Top Up With Sprite</td>
+                        <td>₹455</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_MindEraser"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mind Eraser', 455, 'C_MindEraser')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tequila Sunrise" data-price="455" data-id="C_TequilaSunrise">
+                        <td><b>Tequila Sunrise</b><br>Tequila Based Cocktail Touch With Orange Juice And A Dash Of Grenadine</td>
+                        <td>₹455</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_TequilaSunrise"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tequila Sunrise', 455, 'C_TequilaSunrise')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Bloody Marry" data-price="455" data-id="C_BloodyMarry">
+                        <td><b>Bloody Marry</b></td>
+                        <td>₹455</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_BloodyMarry"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Bloody Marry', 455, 'C_BloodyMarry')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mojito" data-price="445" data-id="C_Mojito">
+                        <td><b>Mojito</b><br>Refreshing White Rum & vodka based Cocktail</td>
+                        <td>₹445</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C_Mojito"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mojito', 445, 'C_Mojito')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-  <!-- Main content section -->
-<div class="container" id="home">
-  <!-- Search bar -->
-  <input type="text" id="searchBar" placeholder="Search for an item..." oninput="filterItems()">
-  
-  <!-- Stationery Catalogue -->
-  <h2>DIGITAL MENU CARD </h2>
-  <p><b>with UPI payment</b></p>
-  <table id="productTable">
-    <div class="thead">
-    <!-- <thead>
-      <tr>
-          <th>Icon</th>
-          <th>Item Details</th>
-          <th>Quantity & Add to Cart</th>
-          <th>Cart Status</th>
-      </tr> -->
-  </thead>
+<p>* Government taxes extra as per actual | ** In case of any allergies, kindly inform your server before.</p>
+<p>* Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!!</p>
+</section>
 </div>
-<br><br>
-      <tbody>
-          <!-- Product 1 -->
-          <tr class="product-item" data-name="Complete Thali" data-price="100" data-id="CT120">
-              <td>
-                  <img src="images/thali.png" alt="Complete Thali Icon" width="150" class="zoom" onclick="openModal('images/thali.png')">
-              </td>
-              <td><b>घर की थाली Complete Thali</b></td>
-              <td>Dal Makhni, Kantola ki sabji/any other seasonal sukhi sabji, Rice, Raita, 4 Tandoori Roti</td>
-              <td>₹120</td>
-              <td class="quantity">
-                  <input type="number" value="1" min="1">
-              </td>
-              
-              <td class="cart-status" id="status-CT120"><img src="images/waiter.png"  class="waiter"> </td>
-              <td>
-                  <button onclick="addToCart('Complete Thali', 120, 'CT120')">Add to Cart</button>
-                  
-              </td>
-             
-              
-          </tr>
-          
-          <!-- Product 2 -->
-          <tr class="product-item" data-name="Chana Daal Full Plate" data-price="90" data-id="CDFP90">
-              <td>
-                  <img src="images/chnadaal.png" alt="Chana Daal Full Plate Icon" width="150" class="zoom" onclick="openModal('images/chnadaal.png')">
-              </td>
-              <td><b>चना दाल प्लेट Chana Daal Full Plate</b>
-              <td>चना दाल Full Plate Chana Daal Full Plate</td>
-             
-              <td>₹90</td>
-              <td class="quantity">
-                  <input type="number" value="1" min="1">
-              </td>
-              <td class="cart-status" id="status-CDFP90"><img src="images/waiter.png" class="waiter"></td>
-              <td>
-                  <button onclick="addToCart('Chana Daal Full Plate', 90, 'CDFP90')">Add to Cart</button>
-              </td>
-              
-          </tr>
-          
-          <!-- Product 3 -->
-          <tr class="product-item" data-name="Chana Daal Half Plate" data-price="60" data-id="CDHP60">
-              <td>
-                  <img src="images/halfchnadaal.png" alt="Chana Daal Half Plate Icon" width="150" class="zoom" onclick="openModal('images/halfchnadaal.png')">
-              </td>
-              <td><b>चना दाल प्लेट Chana Daal Half Plate</b>
-              <td>चना दाल Half Plate Chana Daal Half Plate</td>
-              
-              <td>₹60</td>
-              <td class="quantity">
-                  <input type="number" value="1" min="1">
-              </td>
-              <td class="cart-status" id="status-CDHP60"><img src="images/waiter.png" class="waiter"></td>
-              <td>
-                  <button onclick="addToCart('Chana Daal Half Plate', 60, 'CDHP60')">Add to Cart</button>
-              </td>
-              
-          </tr>
-          
-          <!-- Product 4 -->
-          <tr class="product-item" data-name="Simple Roti" data-price="10" data-id="SR10">
-              <td>
-                  <img src="images/roti.png" alt="Simple Roti Icon" width="150" class="zoom" onclick="openModal('images/roti.png')">
-              </td>
-              <td><b>सादा रोटी Simple Roti</b>
-              
-              <td>Plain Roti</td>
-              <td>₹10</td>
-              <td class="quantity">
-                  <input type="number" value="1" min="1">
-              </td>
-              <td class="cart-status" id="status-SR10"><img src="images/waiter.png" class="waiter"></td>
-              <td>
-                  <button onclick="addToCart('Simple Roti', 10, 'SR10')">Add to Cart</button>
-              </td>
-         
-          </tr>
-          
-          <!-- Product 5 -->
-          <tr class="product-item" data-name="Naan Roti" data-price="20" data-id="NR20">
-              <td>
-                  <img src="images/naanroti.png" alt="Naan Roti Icon" width="150" class="zoom" onclick="openModal('images/naanroti.png')">
-              </td>
-              <td><b>नान रोटी Naan Roti</b>
-             
-              <td>Butter Naan</td>
-              <td>₹20</td>
-              <td class="quantity">
-                  <input type="number" value="1" min="1">
-              </td>
-              <td class="cart-status" id="status-NR20"><img src="images/waiter.png" class="waiter"></td>
-              <td>
-                  <button onclick="addToCart('Naan Roti', 20, 'NR20')">Add to Cart</button>
-              </td>
-             
-          </tr>
-          <!-- Product 6 -->
-<tr class="product-item" data-name="Ghewar" data-price="550" data-id="GHW550">
-    <td>
-        <img src="images/ghewar.png" alt="Ghewar Icon" width="150" class="zoom" onclick="openModal('images/ghewar.png')">
-    </td>
-    <td><b>गुड़ का घेवर Ghewar</b></td>
-    <td>Delicious Ghewar made with fresh milk and garnished with dry fruits</td>
-    <td>₹550</td>
-    <td class="quantity">
-        <input type="number" value="1" min="1">
-    </td>
-    <td class="cart-status" id="status-GHW550"><img src="images/waiter.png" class="waiter"> </td>
-    <td>
-        <button onclick="addToCart('Ghewar', 550, 'GHW550')">Add to Cart</button>
-    </td>
-</tr>
-
-          <!-- Add more items here -->
-      </tbody>
-  </table>
-</div>
-
 <!-- The Modal -->
 <div id="zoomModal" class="zoom-modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="zoom-modal-content" id="img01">
-</div>
-
-<!-- Cart section -->
-<div id="cart">
-  <h2>Cart</h2>
-  <ul id="cartItems"></ul>
-  <p id="cartMessage"></p>
-</div>
-
-<!-- Checkout form section -->
-<div id="checkoutForm">
-  <h2 style="color: aliceblue;">Checkout</h2>
-  <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
-      <div class="form-group">
-        <label for="diningOption">Choose your dining option:</label>
-        <select id="diningOption" onchange="showInputField()">
-            <option value="">Select an option</option>
-            <option value="package">Packaging</option>
-            <option value="eat">Eat here</option>
-        </select>
-    </div>
-    <div class="form-group hidden" id="responseGroup">
-        <label for="address" id="responseLabel">Enter your address:</label>
-        <input type="text" id="address" name="response" required>
-    </div>
-     
-      <label for="contact">Contact:</label>
-      <input type="text" id="contact" required>
-      <label for="alternateContact">Alternate Contact:</label>
-      <input type="text" id="alternateContact">
-      <button type="button" onclick="generateInvoice()">Generate Invoice</button>
-  </form>
-</div>
-
-
-    <!-- Footer section -->
-    <footer id="footer">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="zoom-modal-content" id="img01">
+  </div>
+  
+  <!-- Cart section -->
+  <div id="cart">
+    <h2>Cart</h2>
+    <ul id="cartItems"></ul>
+    <p id="cartMessage"></p>
+  </div>
+  
+  <!-- Checkout form section -->
+  <div id="checkoutForm">
+    <h2 style="color: aliceblue;">Checkout</h2>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <div class="form-group">
+          <label for="diningOption">Choose your dining option:</label>
+          <select id="diningOption" onchange="showInputField()">
+              <option value="">Select an option</option>
+              <option value="package">Packaging</option>
+              <option value="eat">Eat here</option>
+          </select>
+      </div>
+      <div class="form-group hidden" id="responseGroup">
+          <label for="address" id="responseLabel">Enter your address:</label>
+          <input type="text" id="address" name="response" required>
+      </div>
        
-        <p>Contact us at: <a href="mailto:msmemitratushar@gmail.com" style="color: white;">msmemitratushar@gmail.com</a></p>
-        <p>Phone: 981-740-9607</p>
-        <p>Address: Rohtak, Gohana Rd</p>
-        <br>
-        <p>Copyright &copy; 2022 Shabari Delights Restaurant</p>
-    </footer>
-
-    <!-- JavaScript file inclusion (if any) -->
-    <script src="script.js"></script>
- 
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" required>
+        <label for="alternateContact">Alternate Contact:</label>
+        <input type="text" id="alternateContact">
+        <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+    </form>
+  </div>
+  
+  
+      <!-- Footer section -->
+      <footer id="footer">
+         
+          <p>Contact us at: <a href="mailto:msmemitratushar@gmail.com" style="color: white;">msmemitratushar@gmail.com</a></p>
+          <p>Phone: 981-740-9607</p>
+          <p>Address: Rohtak, Gohana Rd</p>
+          <br>
+          <p>Copyright &copy; 2022 Shabari Delights Restaurant</p>
+      </footer>
+  
+      <!-- JavaScript file inclusion (if any) -->
+      <script src="script.js"></script>
+   
+  </body>
+  </html>
+  
 </body>
 </html>

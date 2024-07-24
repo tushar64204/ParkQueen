@@ -77,7 +77,7 @@ function toggleCheckout() {
     } else {
         checkoutForm.style.display = 'none';
         const amountNeeded = 99 - total;
-        cartMessage.innerHTML = `<span style="color: green; background-color: white; padding: 2px;"> Add ₹${amountNeeded.toFixed(2)} more to your cart to proceed to checkout.</span>`;
+        cartMessage.innerHTML = `<span style="color: green; background-color: white; padding: 2px;"> Add ₹${amountNeeded.toFixed(2)}  more to your cart to proceed to checkout.</span>`;
     }
 }
 
@@ -118,15 +118,12 @@ function generateInvoice() {
         <head>
             <title>Invoice</title>
             <style>
+                /* Styles for the invoice */
                 body { font-family: Arial, sans-serif; }
                 .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-                .invoice-header { display: flex; justify-content: space-between; align-items: center; }
-                .invoice-header h1 { margin: 0; }
-                .invoice-header img { width: 100px; }
-                .invoice-info { text-align: right; }
+                .invoice-header { text-align: center; }
                 .invoice-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                 .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                .invoice-table th { background-color: lightblue; }
                 .invoice-footer { text-align: right; margin-top: 20px; }
                 .invoice-buttons { text-align: center; margin-top: 20px; }
                 .invoice-buttons button { margin: 5px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; }
@@ -135,25 +132,21 @@ function generateInvoice() {
                 .payment-options button { margin: 5px; padding: 10px 20px; background-color: #28a745; color: #fff; border: none; cursor: pointer; }
                 .payment-options button:hover { background-color: #218838; }
             </style>
+            <!-- Include QR code library -->
             <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
         </head>
         <body>
             <div class="invoice-container">
                 <div class="invoice-header">
                     <h1>Shabari Delights Restaurant</h1>
-                    <img src="/images/logo.png" alt="Shabari Delights Restaurant Logo">
-                    <div class="invoice-info">
-                        <p>Bill Number: ${Math.floor(Math.random() * 100000)}</p>
-                        <p>Date: ${new Date().toLocaleDateString()}</p>
-                        <p>Time: ${new Date().toLocaleTimeString()}</p>
-                    </div>
+                    <img src="/images/logo.png" alt="Shabari Delights Restaurant Logo" width="100"><br>
+                    <h3>Invoice</h3>
                 </div>
-                <h3>Customer Details</h3>
+                   <h1>Customer Details</h1>
                 <p>Name: ${name}</p>
                 <p>Address/Table no.: ${address}</p>
                 <p>Contact Number: ${contact}</p>
                 <p>Alternate Contact Number: ${alternateContact}</p>
-  
                 <table class="invoice-table">
                     <thead>
                         <tr>
@@ -161,52 +154,35 @@ function generateInvoice() {
                             <th>ID</th>
                             <th>Quantity</th>
                             <th>Price (₹)</th>
-                            <th>Tax (5%) (₹)</th>
-                            <th>Total (₹)</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
     `;
 
-    let subtotal = 0;
+    // Add cart items to the invoice content
     cart.forEach(cartItem => {
-        const itemTotal = cartItem.price * cartItem.quantity;
-        const tax = cartItem.price * 0.05;
-        const totalWithTax = itemTotal + (tax * cartItem.quantity);
-        subtotal += itemTotal;
-
         invoiceContent += `
             <tr>
                 <td>${cartItem.name}</td>
                 <td>${cartItem.id}</td>
                 <td>${cartItem.quantity}</td>
-                <td>₹${cartItem.price.toFixed(2)}</td>
-                <td>₹${(tax * cartItem.quantity).toFixed(2)}</td>
-                <td>₹${itemTotal.toFixed(2)}</td>
+                <td>₹${cartItem.price}</td>
+                
             </tr>
         `;
     });
 
-    const taxAmount = subtotal * 0.05;
-    const grandTotal = subtotal + taxAmount;
-
+    // Add total to the invoice content
     invoiceContent += `
                     <tr>
-                        <th colspan="5">Subtotal</th>
-                        <td>₹${subtotal.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="5">Tax (5%)</th>
-                        <td>₹${taxAmount.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="5"><b>Grand Total</b></th>
-                        <td><b>₹${grandTotal.toFixed(2)}</b></td>
+                        <th colspan="3">Total</th>
+                        <td>₹${total}</td>
                     </tr>
                 </tbody>
             </table>
             <div class="invoice-footer">
-                <h3>Shop Details</h3>
+            <h1>Shop Details</h1>
                 <p>Shop Owner: Tushar</p>
                 <p>Address: Rohtak, Haryana</p>
                 <p>Contact: 9817409607</p>
@@ -215,73 +191,125 @@ function generateInvoice() {
             <div class="invoice-buttons">
                 <button onclick="window.print()">Print Invoice</button>
                 <button onclick="backToShopping()">Back to Shopping</button>
+               
             </div>
-            <div class="payment-options">
-                <button onclick="toggleContent()">Make Payment: ₹${grandTotal} (limited-time offer)</button>
-                <div class="payment-content" style="display: none;">
-                    <h3>Choose Your Payment Method</h3>
-                    <div>
-                        <input type="radio" id="upi" name="paymentMethod" value="UPI">
-                        <label for="upi">Pay via UPI</label><br>
-                        <input type="radio" id="cod" name="paymentMethod" value="COD">
-                        <label for="cod">Pay via COD</label>
-                    </div>
-                    <div id="upiDetails" style="display: none;">
-                        <h4>Send Money via UPI</h4>
-                        <p>Scan the QR code below or click the button to make a payment of ₹${grandTotal}:</p>
-                        <div id="qrcode"></div>
-                        <a href="upi://pay?pa=9817409607@ybl&pn=ShabariDelights&am=${grandTotal}&tn=Payment for Food" class="c5">Click here to pay via UPI</a>
-                        <p>📲 After Payment:</p>
-                        <p>💳 <strong>Please share a screenshot of your payment confirmation on WhatsApp.<br> Our team will contact you within 1 hour of payment receipt. Rest assured, your funds are secure with us.</strong></p>
-                    </div>
-                </div>
-            </div>
-            <button class="whatsapp-order-button" onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
-            <script>
-                function toggleContent() {
-                    const hiddenContent = document.querySelector('.payment-content');
-                    hiddenContent.style.display = hiddenContent.style.display === 'none' ? 'block' : 'none';
-                }
+          <div class="payment-options">
+    <button onclick="toggleContent()">Make Payment: ₹${total} (limited-time offer)</button>
+    <div class="payment-content" style="display: none;">
+        <h1>Choose Your Payment Method</h1>
+        <div>
+            <input type="radio" id="upi" name="paymentMethod" value="UPI">
+            <label for="upi">Pay via UPI</label><br>
+            <input type="radio" id="cod" name="paymentMethod" value="COD">
+            <label for="cod">Pay via COD</label>
+        </div>
+        <div id="upiDetails" style="display: none;">
+            <h2>Send Money via UPI</h2>
+            <p>Scan the QR code below or click the button to make a payment of ₹${total}:</p>
+            <div id="qrcode"></div>
+            <a href="upi://pay?pa=9817409607@ybl&pn=PaperPalace&am=${total}&tn=Payment for Stationery" class="c5">Click here to pay via UPI</a>
+            <p>📲 After Payment:</p>
+            <p>💳 <strong>Please share a screenshot of your payment confirmation on WhatsApp.<br> Our team will contact you within 1 hour of payment receipt. Rest assured, your funds are secure with us.</strong></p>
+        </div>
+    </div>
+</div>
+<style>
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: 3px solid #4CAF50; /* Green border */
+    padding: 10px 20px; /* Padding around text */
+    font-size: 20px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+}
 
-                document.querySelectorAll('input[name="paymentMethod"]').forEach((elem) => {
-                    elem.addEventListener("change", function(event) {
-                        const upiDetails = document.getElementById('upiDetails');
-                        if (event.target.value === 'UPI') {
-                            upiDetails.style.display = 'block';
-                        } else {
-                            upiDetails.style.display = 'none';
-                        }
-                    });
-                });
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    border-color: #45a049; /* Darker green border on hover */
+}
+    .whatsapp-order-button {
+    background-color: #25d366; /* WhatsApp green */
+    color: white;
+    font-size: 18px; /* Increase the font size */
+    padding: 15px 30px; /* Increase the padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-                const qrData = \`upi://pay?pa=9817409607@ybl&pn=ShabariDelights&am=${grandTotal}&tn=Payment for Food\`;
-                new QRCode(document.getElementById('qrcode'), {
-                    text: qrData,
-                    width: 200,
-                    height: 200,
-                });
+.whatsapp-order-button:hover {
+    background-color: #1ebc5a; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
 
-                function sendOrderOnWhatsApp() {
-                    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-                    const message = \`Order Details:\\nName: ${name}\\nAddress/Table: ${address}\\nContact: ${contact}\\nTotal: ₹${grandTotal}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
+.whatsapp-order-button:active {
+    background-color: #128c4c; /* Even darker green when clicked */
+    transform: scale(0.95); /* Slightly decrease size when clicked */
+}
 
-                    const url = \`https://wa.me/919817409607?text=\${encodeURIComponent(message)}\`;
-                    window.open(url, '_blank');
-                }
+</style>
+<button class="whatsapp-order-button" onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
 
-                function backToShopping() {
-                    window.location.href = 'index.html';
-                }
-            </script>
+
+
+<script>
+    // Function to toggle the hidden payment content
+    function toggleContent() {
+        const hiddenContent = document.querySelector('.payment-content');
+        hiddenContent.style.display = hiddenContent.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Listen for changes in the payment method selection
+    document.querySelectorAll('input[name="paymentMethod"]').forEach((elem) => {
+        elem.addEventListener("change", function(event) {
+            const upiDetails = document.getElementById('upiDetails');
+            if (event.target.value === 'UPI') {
+                upiDetails.style.display = 'block';
+            } else {
+                upiDetails.style.display = 'none';
+            }
+        });
+    });
+
+    // Generate the QR code for UPI payment
+    const upiId = '9817409607@ybl';
+    const amount = '${total}';
+    const transactionNote = 'Payment for Stationery';
+    const qrData = \`upi://pay?pa=\${upiId}&pn=PaperPalace&am=\${amount}&tn=\${transactionNote}\`;
+    new QRCode(document.getElementById('qrcode'), {
+        text: qrData,
+        width: 200,
+        height: 200,
+    });
+
+  
+    // Function to send order details on WhatsApp
+    function sendOrderOnWhatsApp() {
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+        const message = \`Order Details:\\nName: ${name}\\nAddress/Table: ${address}\\nContact: ${contact}\\nTotal: ₹${total}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
+
+        const url = \`https://wa.me/919817409607?text=\${encodeURIComponent(message)}\`;
+        window.open(url, '_blank');
+    }
+    // Function to navigate back to shopping page
+    function backToShopping() {
+        window.location.href = 'index.html';
+    }
+        
+
+</script>
+
         </body>
         </html>
     `;
 
+    // Open a new window with the generated invoice content
     const newWindow = window.open();
     newWindow.document.write(invoiceContent);
     newWindow.document.close();
 }
-
 function openModal(imageSrc) {
     var modal = document.getElementById('zoomModal');
     var modalImg = document.getElementById('img01');
@@ -293,7 +321,6 @@ function closeModal() {
     var modal = document.getElementById('zoomModal');
     modal.style.display = "none";
 }
-
 function showInputField() {
     const diningOption = document.getElementById('diningOption').value;
     const responseGroup = document.getElementById('responseGroup');

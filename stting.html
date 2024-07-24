@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Card</title>
+    <link rel="stylesheet" href="styles.css">
+  
+    <script>
+        function addToCart(name, price, id) {
+            const quantityElement = document.querySelector(`[data-id='${id}'] .quantity input`);
+            const quantity = parseInt(quantityElement.value);
+            const statusElement = document.getElementById(`status-${id}`);
+            
+            if (quantity > 0) {
+                statusElement.innerHTML = `<img src="images/ok.png" class="waiter"> Added to Cart (${quantity})`;
+            } else {
+                statusElement.innerHTML = `<img src="images/waiter.png" class="waiter">`;
+            }
+        }
+
+        function searchItems() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const items = document.querySelectorAll('.product-item');
+            const sections = document.querySelectorAll('section');
+            let hasResult = false;
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                if (itemName.includes(filter)) {
+                    item.style.display = '';
+                    hasResult = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            sections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.product-item:not([style*="display: none"])');
+                if (visibleItems.length > 0) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (!hasResult) {
+                document.getElementById('noResults').style.display = 'block';
+            } else {
+                document.getElementById('noResults').style.display = 'none';
+            }
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+    </script>
+</head>
+<body>
+    <header>
+       
+        The ParkQueen Hotel & Resort's Digital Menu
+        
+    </header>
+    <div class="container">
+        <img src="./images/logo2.png" width="20%" style="align-items: center; position: absolute;">
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="searchItems()" placeholder="Search for items...">
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="/images/Beverage.png" alt="Beverages Background">
+                    <h2 onclick="showSection('beverages')">Beverages</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/cocktails.png" alt="Cocktails Background">
+                    <h2 onclick="showSection('cocktails')">Cocktails</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/mocktails.png" alt="Mocktails Background">
+                    <h2 onclick="showSection('mocktails')">Mocktails</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/salads.png" alt="Salads Background">
+                    <h2 onclick="showSection('salads')">Salads</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/soups.png" alt="Soups Background">
+                    <h2 onclick="showSection('soups')">Soups</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/indian_appetizers_veg.png" alt="Indian Appetizers Vegetarian Background">
+                    <h2 onclick="showSection('indian-appetizers-vegetarian')">Indian <br>Appetizers<br> Veg.</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/indian_appetizers_nonveg.png" alt="Indian Appetizers Non-Vegetarian Background">
+                    <h2 onclick="showSection('indian-appetizers-non-vegetarian')">Indian<br> Appetizers <br>Non-Veg.</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/chinese_appetizers.png" alt="Chinese Appetizers Background">
+                    <h2 onclick="showSection('chinese-appetizers')">Chinese <br>Appetizers</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/continental_appetizers.png" alt="Continental Appetizers Background">
+                    <h2 onclick="showSection('continental-appetizers')">Continental <br>Appetizers</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/indian_main_course_veg.png" alt="Indian Main Course Vegetarian Background">
+                    <h2 onclick="showSection('indian-main-course-veg')">Indian<br> Main<br> Course<br> Veg.</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/indian_main_course_nonveg.png" alt="Indian Main Course Non-Vegetarian Background">
+                    <h2 onclick="showSection('main-course-non-veg')">Indian <br>Main <br>Course<br> Non-Veg</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/oriental_main_course.png" alt="Oriental Main Course Background">
+                    <h2 onclick="showSection('oriental-main-course')">Oriental <br>Main <br>Course</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/continental_main_course.png" alt="Continental Main Course Background">
+                    <h2 onclick="showSection('continental-main-course')">Continental <br>Main <br>Course</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/side_order.png" alt="Side Order Background">
+                    <h2 onclick="showSection('side-order')">Side <br>Order</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/biryani.png" alt="Biryani Background">
+                    <h2 onclick="showSection('biryani-rice-noodles-raita')">Biryani<br>Noodles<br>Rice<br>Raita</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/indian_bread.png" alt="Choice of Indian Bread Background">
+                    <h2 onclick="showSection('indian-bread')">Indian <br>Bread</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/fusion_sizzler.png" alt="Fusion Sizzler Background">
+                    <h2 onclick="showSection('fusion-sizzler')">Fusion <br>Sizzler</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/desserts.png" alt="Desserts Background">
+                    <h2 onclick="showSection('desserts')">Desserts</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-headings-wrapper">
+            <div class="menu-headings">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/burger_wrap.png" alt="Burger Wrap Sandwiches Background">
+                    <h2 onclick="showSection('burgers-wraps-sandwiches')">Burger<br>Sandwiches</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/pizza.png" alt="Pizza Background">
+                    <h2 onclick="showSection('pizzas')">Pizza</h2>
+                </div>
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <img src="images/pasta.png" alt="Pasta Background">
+                    <h2 onclick="showSection('pasta')">Pasta</h2>
+                </div>
+            </div>
+        </div>
+        
+
+        <div id="noResults" style="display: none; text-align: center; color: red;">
+            No items found.
+        </div>
+<section id="beverages">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Beverages</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="product-item" data-name="Soda" data-price="55" data-id="S55">
+                        <td><b>Soda</b></td>
+                        <td>₹55</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-S55"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Soda', 55, 'S55')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Packed Drinking Water" data-price="85" data-id="PDW85">
+                        <td><b>Packed Drinking Water</b></td>
+                        <td>₹85</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PDW85"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Packed Drinking Water', 85, 'PDW85')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Aerated Water" data-price="85" data-id="AW85">
+                        <td><b>Aerated Water</b></td>
+                        <td>₹85</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AW85"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Aerated Water', 85, 'AW85')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Diet Coke" data-price="115" data-id="DC115">
+                        <td><b>Diet Coke</b></td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DC115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Diet Coke', 115, 'DC115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Canned Juice" data-price="155" data-id="CJ155">
+                        <td><b>Canned Juice</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CJ155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Canned Juice', 155, 'CJ155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tonic Water" data-price="155" data-id="TW155">
+                        <td><b>Tonic Water</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TW155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tonic Water', 155, 'TW155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ginger Ale" data-price="155" data-id="GA155">
+                        <td><b>Ginger Ale</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GA155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ginger Ale', 155, 'GA155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pudina Shikanji / Jal Jeera" data-price="155" data-id="PSJJ155">
+                        <td><b>Pudina Shikanji / Jal Jeera</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PSJJ155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pudina Shikanji / Jal Jeera', 155, 'PSJJ155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fresh Lime Water / Soda" data-price="155" data-id="FLWS155">
+                        <td><b>Fresh Lime Water / Soda</b></td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FLWS155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fresh Lime Water / Soda', 155, 'FLWS155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Red Bull" data-price="225" data-id="RB225">
+                        <td><b>Red Bull</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RB225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Red Bull', 225, 'RB225')">Add to Cart</button></td>
+                    </tr>
+                   
+                    <tr class="product-item" data-name="Masala Tea" data-price="115" data-id="MT115">
+                        <td><b>Masala Tea</b><br>Not far from home </td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MT115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Masala Tea', 115, 'MT115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Not far from home Lemon Tea" data-price="115" data-id="NFH115">
+                        <td><b>Lemon Tea</b><br>Works for iron absorption & weight loss</td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-NFH115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Not far from home Lemon Tea', 115, 'NFH115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Lemon Grass Tea" data-price="115" data-id="LGT115">
+                        <td><b>Lemon Grass Tea</b><br>Works for strength, immunity & digestion</td>
+                        <td>₹115</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LGT115"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Lemon Grass Tea', 115, 'LGT115')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cappuccino" data-price="195" data-id="CAP195">
+                        <td><b>Cappuccino</b><br>One third of coffee, one third of milk & one third of froth</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CAP195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cappuccino', 195, 'CAP195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Café Latte" data-price="195" data-id="CL195">
+                        <td><b>Café Latte</b><br>Less coffee more milk</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CL195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Café Latte', 195, 'CL195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Espresso | Black" data-price="195" data-id="EB195">
+                        <td><b>Espresso | Black</b><br>Wake up with Shots</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-EB195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Espresso | Black', 195, 'EB195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cold Coffee (Ask Your Server)" data-price="195" data-id="CC195">
+                        <td><b>Cold Coffee (Ask Your Server)</b><br>With Or Without Ice Cream</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CC195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cold Coffee (Ask Your Server)', 195, 'CC195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Milk Shakes (Ask Your Server)" data-price="195" data-id="CMS195">
+                        <td><b>Choice of Milk Shakes (Ask Your Server)</b><br>Vanilla/Strawberry/Chocolate/Banana/Mango</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CMS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Milk Shakes (Ask Your Server)', 195, 'CMS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Lassi (Ask Your Server)" data-price="195" data-id="CLS195">
+                        <td><b>Choice of Lassi (Ask Your Server)</b><br>Sweet/Salted/Masala/Plain/Mango</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CLS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Lassi (Ask Your Server)', 195, 'CLS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fresh Juice" data-price="195" data-id="FJ195">
+                        <td><b>Fresh Juice</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FJ195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fresh Juice', 195, 'FJ195')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        
+        <section id="cocktails">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Cocktails</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Cocktails Items -->
+                      <tr class="product-item" data-name="Margarita" data-price="495" data-id="M495">
+                <td><b>Margarita</b><br>Mexican Cocktail Consisting Tequila, Cointreau And Lime Juice</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-M495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Margarita', 495, 'M495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Martini" data-price="495" data-id="MART495">
+                <td><b>Martini</b><br>Classic, Green Apple, Fresh Kiwi, Chocolate, Lemon Grass & Red Chilly</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-MART495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Martini', 495, 'MART495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Caprioska" data-price="495" data-id="C495">
+                <td><b>Caprioska</b><br>Vodka Based Cocktail With A Twist Of Lime & Sugar</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-C495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Caprioska', 495, 'C495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Long Island Ice Tea" data-price="495" data-id="LI495">
+                <td><b>Long Island Ice Tea</b><br>Combination Of All White Spirits, Top Up With Cola</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-LI495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Long Island Ice Tea', 495, 'LI495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Love In The Kiss" data-price="495" data-id="LIK495">
+                <td><b>Love In The Kiss</b><br>A Great Combination Of Vodka, Martini & Ginger Ale</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-LIK495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Love In The Kiss', 495, 'LIK495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Gibson" data-price="495" data-id="G495">
+                <td><b>Gibson</b><br>Gin & Dry Vermouth On The Rocks</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-G495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Gibson', 495, 'G495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Vodka Martini" data-price="495" data-id="VM495">
+                <td><b>Vodka Martini</b><br>Shaken Well. Vodka With Dry Vermouth</td>
+                <td>₹495</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-VM495"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Vodka Martini', 495, 'VM495')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="White Russian" data-price="525" data-id="WR525">
+                <td><b>White Russian</b><br>Vodka With Kahlua & Cream</td>
+                <td>₹525</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-WR525"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('White Russian', 525, 'WR525')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Mind Eraser" data-price="455" data-id="ME455">
+                <td><b>Mind Eraser</b><br>Combination Of 4 White Spirits Top Up With Sprite</td>
+                <td>₹455</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-ME455"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Mind Eraser', 455, 'ME455')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Tequila Sunrise" data-price="455" data-id="TS455">
+                <td><b>Tequila Sunrise</b><br>Tequila Based Cocktail Touch With Orange Juice And A Dash Of Grenadine</td>
+                <td>₹455</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-TS455"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Tequila Sunrise', 455, 'TS455')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Bloody Mary" data-price="455" data-id="BM455">
+                <td><b>Bloody Mary</b></td>
+                <td>₹455</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-BM455"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Bloody Mary', 455, 'BM455')">Add to Cart</button></td>
+            </tr>
+            <tr class="product-item" data-name="Mojito" data-price="445" data-id="M445">
+                <td><b>Mojito</b><br>Refreshing White Rum & Vodka Based Cocktail</td>
+                <td>₹445</td>
+                <td class="quantity"><input type="number" value="1" min="1"></td>
+                <td class="cart-status" id="status-M445"><img src="images/waiter.png" class="waiter"></td>
+                <td><button onclick="addToCart('Mojito', 445, 'M445')">Add to Cart</button></td>
+            </tr>
+                    <!-- End of Cocktails Items -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="mocktails">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Mocktails</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Mocktail Items -->
+                    <tr class="product-item" data-name="Virgin Mojito" data-price="325" data-id="VM325">
+                        <td><b>Virgin Mojito</b><br>Lemon juice mint leaf, chunks of lemon pieces topped with soda</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VM325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Virgin Mojito', 325, 'VM325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Resurrection" data-price="325" data-id="R325">
+                        <td><b>Resurrection</b><br>Orange juice, Mango juice, pineapple juice, grenadine syrup, and vanilla ice cream</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-R325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Resurrection', 325, 'R325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kiwi Surprise" data-price="325" data-id="KS325">
+                        <td><b>Kiwi Surprise</b><br>Kiwis crush, lemon juice, and topped with sprite</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KS325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kiwi Surprise', 325, 'KS325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Strawberry Delight" data-price="325" data-id="SD325">
+                        <td><b>Strawberry Delight</b><br>Strawberries crush, cranberry & orange juice with sweet lime</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SD325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Strawberry Delight', 325, 'SD325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="London Dreams" data-price="325" data-id="LD325">
+                        <td><b>London Dreams</b><br>Ginger ale, sugar, and lime topped with cola</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LD325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('London Dreams', 325, 'LD325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Safe Sex on the Beach" data-price="325" data-id="SSOTB325">
+                        <td><b>Safe Sex on the Beach</b><br>Peach syrup, orange & pineapple juice topped with sweet lime</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SSOTB325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Safe Sex on the Beach', 325, 'SSOTB325')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+
+
+        <section id="salads">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Salads</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Salad Items -->
+                    <tr class="product-item" data-name="Green Salad" data-price="195" data-id="GS195">
+                        <td><b>Green Salad</b><br>Freshly farm grown greens</td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GS195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Green Salad', 195, 'GS195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Russian Salad" data-price="265" data-id="RS265">
+                        <td><b>Russian Salad</b><br>Freshly farm grown greens (with mayonnaise)</td>
+                        <td>₹265</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RS265"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Russian Salad', 265, 'RS265')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Tex Mex" data-price="255" data-id="VTM255">
+                        <td><b>Veg Tex Mex</b><br>Tortilla chips with corn, bean & pepper</td>
+                        <td>₹255</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VTM255"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Tex Mex', 255, 'VTM255')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Greek Salad" data-price="275" data-id="GS275">
+                        <td><b>Greek Salad</b><br>Classical greek salad</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Greek Salad', 275, 'GS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Caesar Salad" data-price="275" data-id="CS275">
+                        <td><b>Caesar Salad</b><br>Salad of iceberg lettuce and croutons dressed with rich creamy caesar</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Caesar Salad', 275, 'CS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Quinoa Salad" data-price="255" data-id="QS255">
+                        <td><b>Quinoa Salad</b><br>Arugula leaf, quinoa, apple & pomegranate flavored with mustard vinaigrette</td>
+                        <td>₹255</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QS255"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Quinoa Salad', 255, 'QS255')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mexican Corn & Bean" data-price="255" data-id="MCB255">
+                        <td><b>Mexican Corn & Bean</b><br>Arugula leaf, corn, beans, tomato, onion and nachos with ranch dressing</td>
+                        <td>₹255</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MCB255"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mexican Corn & Bean', 255, 'MCB255')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Caesar Salad with Chicken & Bacon" data-price="325" data-id="CSCB325">
+                        <td><b>Caesar Salad with Chicken & Bacon</b><br>Salad of iceberg lettuce and croutons dressed with rich creamy caesar & anchovy with chicken & bacon</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CSCB325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Caesar Salad with Chicken & Bacon', 325, 'CSCB325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Smoked Chicken Quinoa Salad" data-price="325" data-id="SCQS325">
+                        <td><b>Smoked Chicken Quinoa Salad</b><br>Thyme smoked chicken & quinoa, apple & pomegranate flavored with vinaigrette</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SCQS325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Smoked Chicken Quinoa Salad', 325, 'SCQS325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Tex Mex" data-price="325" data-id="CTM325">
+                        <td><b>Chicken Tex Mex</b><br>Tortilla chips with corn, bean, pepper & chicken</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CTM325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Tex Mex', 325, 'CTM325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murg Tikka Salad in European Style" data-price="325" data-id="MTSE325">
+                        <td><b>Murg Tikka Salad in European Style</b><br>A yummy salad with grilled chicken, lettuce, baby spinach and creamy tomato slice in a mouthwatering dressing</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MTSE325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murg Tikka Salad in European Style', 325, 'MTSE325')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>* Government taxes extra as per actual | ** In case of any allergies, kindly inform your server before.</p>
+            <p>** Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!!</p>
+        </section>
+       
+    
+        <section id="soups">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Soups</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="product-item" data-name="Tomato Dhania Shorba" data-price="225" data-id="TDS225">
+                        <td><b>Tomato Dhania Shorba</b><br>Classical Italian vegetable broth</td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TDS225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tomato Dhania Shorba', 225, 'TDS225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hot & Sour Veg Soup" data-price="225" data-id="HSVS225">
+                        <td><b>Hot & Sour Veg Soup</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HSVS225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hot & Sour Veg Soup', 225, 'HSVS225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Manchow Veg Soup" data-price="225" data-id="MVS225">
+                        <td><b>Manchow Veg Soup</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MVS225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Manchow Veg Soup', 225, 'MVS225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Sweet Corn Veg Soup" data-price="225" data-id="SCVS225">
+                        <td><b>Sweet Corn Veg Soup</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SCVS225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Sweet Corn Veg Soup', 225, 'SCVS225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Cappuccino" data-price="245" data-id="MC245">
+                        <td><b>Mushroom Cappuccino</b><br>Served with loaded mushroom crostini</td>
+                        <td>₹245</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MC245"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Cappuccino', 245, 'MC245')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Khao soi" data-price="245" data-id="KS245">
+                        <td><b>Khao soi</b><br>Chiang mai curry noodles coconut soup</td>
+                        <td>₹245</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KS245"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Khao soi', 245, 'KS245')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Heartly Veg Broth" data-price="225" data-id="HVB225">
+                        <td><b>Heartly Veg Broth</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HVB225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Heartly Veg Broth', 225, 'HVB225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Queen Special" data-price="295" data-id="QS295">
+                        <td><b>Queen Special</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QS295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Special', 295, 'QS295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Minestrone di verdure" data-price="275" data-id="MDV275">
+                        <td><b>Minestrone di verdure</b><br>Classical Italian vegetable broth</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MDV275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Minestrone di verdure', 275, 'MDV275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Badami Shorba" data-price="275" data-id="BS275">
+                        <td><b>Badami Shorba</b><br>A rich vegetable broth flavoured with Indian spices</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Badami Shorba', 275, 'BS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Dhania Shorba" data-price="275" data-id="MDS275">
+                        <td><b>Murgh Dhania Shorba</b><br>Egg drop soup with chicken</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MDS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Dhania Shorba', 275, 'MDS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Hot & Sour Soup" data-price="275" data-id="CHSS275">
+                        <td><b>Chicken Hot & Sour Soup</b></td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CHSS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Hot & Sour Soup', 275, 'CHSS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Manchow Soup" data-price="275" data-id="CMS275">
+                        <td><b>Chicken Manchow Soup</b></td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CMS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Manchow Soup', 275, 'CMS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Sweet Corn Soup" data-price="275" data-id="CSCS275">
+                        <td><b>Chicken Sweet Corn Soup</b></td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CSCS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Sweet Corn Soup', 275, 'CSCS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Heartly Chicken Broth" data-price="295" data-id="HCB295">
+                        <td><b>Heartly Chicken Broth</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HCB295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Heartly Chicken Broth', 295, 'HCB295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Queen’s Special" data-price="275" data-id="QS275">
+                        <td><b>Queen’s Special</b></td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen’s Special', 275, 'QS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Stracciatella Soup" data-price="275" data-id="SS275">
+                        <td><b>Stracciatella Soup</b><br>Egg drop soup with chicken</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SS275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Stracciatella Soup', 275, 'SS275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Adraki Shorba" data-price="295" data-id="MAS295">
+                        <td><b>Murgh Adraki Shorba</b><br>A spicy chicken soup made from chicken stock and Indian spices with an extra dose of therapeutic ginger</td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MAS295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Adraki Shorba', 295, 'MAS295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tom Yum" data-price="275" data-id="TY275">
+                        <td><b>Tom Yum</b><br>The most talked about royal Thai soup of mushroom or prawns</td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TY275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tom Yum', 275, 'TY275')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="indian-appetizers-vegetarian">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Indian Appetizers - Vegetarian</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Indian Appetizers Vegetarian Items -->
+                    <tr class="product-item" data-name="Queen Platter" data-price="785" data-id="QP785">
+                        <td><b>Queen Platter</b><br>A combination of chef choice tandoori kebabs served with mint chutney & house salad</td>
+                        <td>₹785</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QP785"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Platter', 785, 'QP785')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Tikka" data-price="495" data-id="PT495">
+                        <td><b>Paneer Tikka</b><br>Cottage cheese marinated in tandoori classical red masala & served with mint sauce</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PT495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Tikka', 495, 'PT495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ajwaini/Achari/Malai/Stuffed/Pudina Paneer Tikka" data-price="495" data-id="AAP495">
+                        <td><b>Ajwaini/Achari/Malai/Stuffed/Pudina Paneer Tikka</b><br>Various flavors of paneer tikka</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AAP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ajwaini/Achari/Malai/Stuffed/Pudina Paneer Tikka', 495, 'AAP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Bhatti Ka Paneer" data-price="495" data-id="BKP495">
+                        <td><b>Bhatti Ka Paneer</b><br>Cottage cheese marinated with Indian spices served with house salad & mint chutney</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BKP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Bhatti Ka Paneer', 495, 'BKP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Khumb Tikka" data-price="495" data-id="KT495">
+                        <td><b>Khumb Tikka</b><br>Fresh button mushroom marinated with Indian spices and finished in tandoor</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KT495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Khumb Tikka', 495, 'KT495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Nawabi Khumb" data-price="495" data-id="NK495">
+                        <td><b>Nawabi Khumb</b><br>Cheese stuffed button mushroom, marinated with Indian spices and finished in clay oven</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-NK495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Nawabi Khumb', 495, 'NK495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Dahi Ke Kebab" data-price="495" data-id="DK495">
+                        <td><b>Dahi Ke Kebab</b><br>A combination of hung curd, roasted gram flour, chili, and coriander</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DK495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Dahi Ke Kebab', 495, 'DK495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Masala Soya Chaap" data-price="485" data-id="MSC485">
+                        <td><b>Masala Soya Chaap</b><br>Raw fried soya bean marinated in Indian herbs</td>
+                        <td>₹485</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MSC485"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Masala Soya Chaap', 485, 'MSC485')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hara Bhara Kebab" data-price="485" data-id="HBK485">
+                        <td><b>Hara Bhara Kebab</b><br>A healthy & delicious Indian vegetarian snack made with spinach, potatoes & green peas</td>
+                        <td>₹485</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HBK485"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hara Bhara Kebab', 485, 'HBK485')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ananas Chaat (Tandoori Chat)" data-price="475" data-id="AC475">
+                        <td><b>Ananas Chaat (Tandoori Chat)</b><br>Honey glazed pineapple, papaya chunks cooked in clay oven</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AC475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ananas Chaat (Tandoori Chat)', 475, 'AC475')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cocktail Haryali Kebab" data-price="475" data-id="CHK475">
+                        <td><b>Cocktail Haryali Kebab</b><br>Pan fried kebab served with mint chutney</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CHK475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cocktail Haryali Kebab', 475, 'CHK475')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tandoori Broccoli" data-price="475" data-id="TB475">
+                        <td><b>Tandoori Broccoli</b><br>Broccoli so royally treated</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TB475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tandoori Broccoli', 475, 'TB475')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kandari Paneer Tikka" data-price="485" data-id="KPT485">
+                        <td><b>Kandari Paneer Tikka</b><br>Cheese marinated, mixed together with thick set curd, Bengal gram flour, ginger garlic paste, Anardana, cumin coriander powder, tamarind</td>
+                        <td>₹485</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KPT485"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kandari Paneer Tikka', 485, 'KPT485')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Vegetarian Shami Kabab" data-price="475" data-id="VSK475">
+                        <td><b>Vegetarian Shami Kabab</b><br>Shami Kabab made with white chickpeas, gram flour, brown onions, spices, and pudina herbs</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VSK475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Vegetarian Shami Kabab', 475, 'VSK475')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mellow Mushroom Potato" data-price="495" data-id="MMP495">
+                        <td><b>Mellow Mushroom Potato</b><br>Aloo-Barrel shaped potatoes filled with mushroom mixture, marinated in yoghurt masala and cooked in the tandoor</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MMP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mellow Mushroom Potato', 495, 'MMP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Makki Makhmali Seekh Kebab" data-price="495" data-id="MMSK495">
+                        <td><b>Makki Makhmali Seekh Kebab</b><br>Makki potatoes, cheese, pudina, masala mixed together and turned into a dough</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MMSK495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Makki Makhmali Seekh Kebab', 495, 'MMSK495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chatpate Coconut Kebab" data-price="475" data-id="CCK475">
+                        <td><b>Chatpate Coconut Kebab</b><br>Coconut kebab made up of potatoes, spinach, gram flour, coconut, carrot etc</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCK475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chatpate Coconut Kebab', 475, 'CCK475')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="indian-appetizers-non-vegetarian">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Indian Appetizers - Non-Vegetarian</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Appetizer Items -->
+                    <tr class="product-item" data-name="King Platter" data-price="990" data-id="KP990">
+                        <td><b>King Platter</b><br>Assortment of scrumptious snack, fish, mutton and chicken kebabs served with home made dips.</td>
+                        <td>₹990</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KP990"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('King Platter', 990, 'KP990')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Amritsari Macchi" data-price="745" data-id="AM745">
+                        <td><b>Amritsari Macchi</b><br>Fried fish coated in gram flour & flavor of ajwain & served with mint chutney.</td>
+                        <td>₹745</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AM745"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Amritsari Macchi', 745, 'AM745')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ajwaini Fish Tikka" data-price="745" data-id="AFT745">
+                        <td><b>Ajwaini Fish Tikka</b><br>Yellow chilli and Indian spice flavored, fresh sole fish chunks cooked in charcoal oven.</td>
+                        <td>₹745</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AFT745"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ajwaini Fish Tikka', 745, 'AFT745')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hyderabadi Fish Tikka" data-price="745" data-id="HFT745">
+                        <td><b>Hyderabadi Fish Tikka</b><br>Fresh sole fish chunks marinated with mint, Indian spices & finished in clay oven.</td>
+                        <td>₹745</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HFT745"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hyderabadi Fish Tikka', 745, 'HFT745')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Seekh Kebab" data-price="685" data-id="MSK685">
+                        <td><b>Mutton Seekh Kebab</b><br>Minced lamb, marinated in mixed spices and cooked in tandoor.</td>
+                        <td>₹685</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MSK685"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Seekh Kebab', 685, 'MSK685')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Tikka" data-price="685" data-id="MT685">
+                        <td><b>Mutton Tikka</b><br>Mutton slice, marinated in mixed spices and cooked in tandoor.</td>
+                        <td>₹685</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MT685"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Tikka', 685, 'MT685')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Burra Kebab" data-price="685" data-id="MBK685">
+                        <td><b>Mutton Burra Kebab</b><br>Mutton chunks marinated in brown cashew nut, onion, red Chilli & rose petal flavored yogurt.</td>
+                        <td>₹685</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MBK685"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Burra Kebab', 685, 'MBK685')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Seekh Kebab" data-price="585" data-id="CSK585">
+                        <td><b>Chicken Seekh Kebab</b><br>Chicken marinated in mixed spices and cooked in tandoor.</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CSK585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Seekh Kebab', 585, 'CSK585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Do Rukh Kebab" data-price="645" data-id="DRK645">
+                        <td><b>Do Rukh Kebab</b><br>Mutton & chicken marinated in mixed spices and cooked in tandoor.</td>
+                        <td>₹645</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DRK645"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Do Rukh Kebab', 645, 'DRK645')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Stuff Tangri" data-price="625" data-id="ST625">
+                        <td><b>Stuff Tangri</b><br>Chicken drumstick marinated in hot Indian spices.</td>
+                        <td>₹625</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-ST625"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Stuff Tangri', 625, 'ST625')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Ke Sooley" data-price="585" data-id="MKS585">
+                        <td><b>Murgh Ke Sooley</b><br>Chicken chunks marinated in brown cashew nut, onion, red Chilli & rose petal flavored yogurt.</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MKS585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Ke Sooley', 585, 'MKS585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Haryali Tikka" data-price="585" data-id="MHT585">
+                        <td><b>Murgh Haryali Tikka</b><br>Chicken chunks marinated in mint sauce, red Chilli & rose petal flavored yogurt.</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MHT585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Haryali Tikka', 585, 'MHT585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Malai Tikka" data-price="585" data-id="MMT585">
+                        <td><b>Murgh Malai Tikka</b><br>Mace & cardamom flavored mild tender chicken chunks cooked in clay oven.</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MMT585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Malai Tikka', 585, 'MMT585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh E Kalimirch" data-price="585" data-id="MEK585">
+                        <td><b>Murgh E Kalimirch</b><br>Tender chicken chunks marinated with cashew nut paste and flavored with black pepper.</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MEK585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh E Kalimirch', 585, 'MEK585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tandoori Chicken (Half Plate)" data-price="495" data-id="TC495">
+                        <td><b>Tandoori Chicken (Half Plate)</b><br>Yoghurt & Indian spice marinated “Punjabi Kukkad” in tandoor.</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TC495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tandoori Chicken (Half Plate)', 495, 'TC495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tandoori Chicken (Full Plate)" data-price="695" data-id="TC695">
+                        <td><b>Tandoori Chicken (Full Plate)</b><br>Yoghurt & Indian spice marinated “Punjabi Kukkad” in tandoor.</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TC695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tandoori Chicken (Full Plate)', 695, 'TC695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kasundi Fish Tikka" data-price="745" data-id="KFT745">
+                        <td><b>Kasundi Fish Tikka</b><br>Fish marinated in kasundi mustard, Indian spice and cooked in clay oven.</td>
+                        <td>₹745</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KFT745"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kasundi Fish Tikka', 745, 'KFT745')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="chinese-appetizers">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Chinese Appetizers</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Veg Items -->
+                    <tr class="product-item" data-name="Chilli Corn Pepper" data-price="395" data-id="CCP395">
+                        <td><b>Chilli Corn Pepper</b><br>Crunchy Chilli corn and pepper. Must Try!!!</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCP395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chilli Corn Pepper', 395, 'CCP395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Chilli" data-price="495" data-id="MC495">
+                        <td><b>Mushroom Chilli</b><br>Crunchy fried Chilli mushroom</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MC495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Chilli', 495, 'MC495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chilli Paneer" data-price="495" data-id="CP495">
+                        <td><b>Chilli Paneer</b><br>Chinese style spicy cottage cheese</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chilli Paneer', 495, 'CP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pot Stickers (Dim Sum)" data-price="425" data-id="PS425">
+                        <td><b>Pot Stickers (Dim Sum)</b><br>Exotic veg, steamed dumplings served with burnt chilli garlic sauce</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PS425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pot Stickers (Dim Sum)', 425, 'PS425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Dragon Roll" data-price="395" data-id="VDR395">
+                        <td><b>Veg Dragon Roll</b><br>Deep fried rolls served with hot garlic sauce</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VDR395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Dragon Roll', 395, 'VDR395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Queen Special Veg Popnut" data-price="395" data-id="QSVP395">
+                        <td><b>Queen Special Veg Popnut</b><br>Crunchy fried bites bathed in chilli garlic sauce</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QSVP395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Special Veg Popnut', 395, 'QSVP395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Salt & Pepper" data-price="395" data-id="VSP395">
+                        <td><b>Veg Salt & Pepper</b><br>Crunchy fried veg bites tossed with oriental spices</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VSP395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Salt & Pepper', 395, 'VSP395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Spring Roll" data-price="395" data-id="VSR395">
+                        <td><b>Veg Spring Roll</b><br>Deep fried home made pan cake stuffed with Vegetables</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VSR395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Spring Roll', 395, 'VSR395')">Add to Cart</button></td>
+                    </tr>
+        
+                    <!-- Non-Veg Items -->
+                    <tr class="product-item" data-name="Chilli Fish" data-price="695" data-id="CF695">
+                        <td><b>Chilli Fish</b><br>Oriental battered fried fish tossed with chilli garlic sauce</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CF695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chilli Fish', 695, 'CF695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Schezwan" data-price="525" data-id="CS525">
+                        <td><b>Chicken Schezwan</b><br>Sliced lamb cooked with leeks, shallots, bell pepper & red Chilli</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Schezwan', 525, 'CS525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken (Dim Sum)" data-price="525" data-id="CD525">
+                        <td><b>Chicken (Dim Sum)</b><br>Steamed chicken dumplings served with sweet chilli sauce</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CD525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken (Dim Sum)', 525, 'CD525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Dragon Roll" data-price="525" data-id="CDR525">
+                        <td><b>Chicken Dragon Roll</b><br>Deep fried rolls served with hot garlic and mayo sauce</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CDR525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Dragon Roll', 525, 'CDR525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken 65" data-price="525" data-id="C65">
+                        <td><b>Chicken 65</b><br>Crunchy fried bites bathed in chilli garlic sauce</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C65"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken 65', 525, 'C65')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Drums of Heaven" data-price="525" data-id="DH525">
+                        <td><b>Drums of Heaven</b><br>Crispy fried chicken wings tossed with hot garlic sauce</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DH525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Drums of Heaven', 525, 'DH525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Rainbow Chicken" data-price="525" data-id="RC525">
+                        <td><b>Rainbow Chicken</b><br>Shredded chicken breast cooked with Exotic baby vegetables</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RC525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Rainbow Chicken', 525, 'RC525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chilli Chicken" data-price="495" data-id="CC495">
+                        <td><b>Chilli Chicken</b><br>Warehouse Style chilli chicken</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CC495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chilli Chicken', 495, 'CC495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Spring Roll" data-price="495" data-id="CSR495">
+                        <td><b>Chicken Spring Roll</b><br>Deep fried home made pan cake stuffed with chicken</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CSR495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Spring Roll', 495, 'CSR495')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>* Government taxes extra as per actual | ** In case of any allergies, kindly inform your server before.</p>
+            <p>** Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!</p>
+        </section>
+        
+        <section id="continental-appetizers">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Continental Appetizers</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Veg Appetizers -->
+                    <tr class="product-item" data-name="Mexican Cigar" data-price="395" data-id="MC395">
+                        <td><b>Mexican Cigar</b><br>Jalapeno, corn and cheese roll with salsa & sour cream</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MC395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mexican Cigar', 395, 'MC395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Bruschetta" data-price="395" data-id="MB395">
+                        <td><b>Mushroom Bruschetta</b><br>Toasted country bread with creamy mushroom</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MB395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Bruschetta', 395, 'MB395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Panko Cheese Finger" data-price="395" data-id="PCF395">
+                        <td><b>Panko Cheese Finger</b><br>Panko crust cheese finger with spicy tomato sauce</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PCF395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Panko Cheese Finger', 395, 'PCF395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Duplex" data-price="395" data-id="MD395">
+                        <td><b>Mushroom Duplex</b><br>Mushrooms are filled with cheese, vegetables and spices and crumb fried</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MD395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Duplex', 395, 'MD395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Saute Vegetable" data-price="395" data-id="SV395">
+                        <td><b>Saute Vegetable</b><br>Exotic vegetables cooked in olive oil</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SV395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Saute Vegetable', 395, 'SV395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Cheese Ball" data-price="395" data-id="VCB395">
+                        <td><b>Veg Cheese Ball</b><br>Mixture of creamy cheese, fresh grated cheese with chopped veggies and other spices for flavoring</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VCB395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Cheese Ball', 395, 'VCB395')">Add to Cart</button></td>
+                    </tr>
+        
+                    <!-- Non-Veg Appetizers -->
+                    <tr class="product-item" data-name="Fish & Chips" data-price="625" data-id="FC625">
+                        <td><b>Fish & Chips</b><br>Fish tossed with spicy sambal sauce</td>
+                        <td>₹625</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FC625"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fish & Chips', 625, 'FC625')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Grilled Fish" data-price="625" data-id="GF625">
+                        <td><b>Grilled Fish</b><br>Fish toasted with lemon butter sauce</td>
+                        <td>₹625</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GF625"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Grilled Fish', 625, 'GF625')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fish Fingers" data-price="625" data-id="FF625">
+                        <td><b>Fish Fingers</b><br>Crumb fried fish fingers with tartar sauce</td>
+                        <td>₹625</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FF625"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fish Fingers', 625, 'FF625')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Shish Kebab" data-price="585" data-id="SK585">
+                        <td><b>Shish Kebab</b><br>Zatar & Sumac flavored lamb mince infused with peanuts and mint on skewers</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SK585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Shish Kebab', 585, 'SK585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Meat Balls" data-price="585" data-id="MB585">
+                        <td><b>Meat Balls</b><br>Rosemary flavored meat balls with spicy tomato sauce and feta cheese</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MB585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Meat Balls', 585, 'MB585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Sambal" data-price="585" data-id="CS585">
+                        <td><b>Chicken Sambal</b><br>Chicken tossed with spicy sambal sauce</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Sambal', 585, 'CS585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Fingers" data-price="585" data-id="CF585">
+                        <td><b>Chicken Fingers</b><br>Crumb fried chicken strips with arrabbiata & tartar sauce</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CF585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Fingers', 585, 'CF585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Wings" data-price="585" data-id="CW585">
+                        <td><b>Chicken Wings</b><br>New York style spicy chicken wings</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CW585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Wings', 585, 'CW585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Shish Taouk" data-price="585" data-id="ST585">
+                        <td><b>Shish Taouk</b><br>Sumac & Saffron flavored grilled chicken on skewers served with tzatziki</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-ST585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Shish Taouk', 585, 'ST585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Bruschetta" data-price="495" data-id="CB495">
+                        <td><b>Chicken Bruschetta</b><br>Toasted country bread topped with thyme chicken</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CB495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Bruschetta', 495, 'CB495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Balls" data-price="585" data-id="CB585">
+                        <td><b>Chicken Balls</b><br>Mixture of chicken mince, bell pepper, herbs, spices and crumb fry</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CB585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Balls', 585, 'CB585')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Crispy Zaatar Chicken Finger" data-price="585" data-id="CZCF585">
+                        <td><b>Crispy Zaatar Chicken Finger</b><br>Middle eastern spice mix of thyme, sumac, sesame seeds coated chicken finger and crumbs with sour cream</td>
+                        <td>₹585</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CZCF585"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Crispy Zaatar Chicken Finger', 585, 'CZCF585')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="indian-main-course-veg">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Indian Main Course Veg</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Indian Main Course Veg Items -->
+                    <tr class="product-item" data-name="Paneer Tikka Butter Masala" data-price="495" data-id="PTBM495">
+                        <td><b>Paneer Tikka Butter Masala</b><br>Cottage cheese cubes cooked with makhani gravy & topped with butter</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PTBM495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Tikka Butter Masala', 495, 'PTBM495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kadhai Paneer" data-price="495" data-id="KP495">
+                        <td><b>Kadhai Paneer</b><br>Cottage cheese cooked with kadhai masala</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kadhai Paneer', 495, 'KP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Lababdar" data-price="495" data-id="PL495">
+                        <td><b>Paneer Lababdar</b><br>Cottage cheese cubes cooked in onion & tomato gravy</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PL495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Lababdar', 495, 'PL495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Palak Paneer" data-price="495" data-id="PP495">
+                        <td><b>Palak Paneer</b><br>All-time favourite delicacy from the land of Punjab</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Palak Paneer', 495, 'PP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Do Pyaza" data-price="485" data-id="MDP485">
+                        <td><b>Mushroom Do Pyaza</b><br>Button mushroom cooked in yellow gravy with green chilli</td>
+                        <td>₹485</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MDP485"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Do Pyaza', 485, 'MDP485')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mushroom Matar Masala" data-price="475" data-id="MMM475">
+                        <td><b>Mushroom Matar Masala</b><br>Peas packed mushroom cooked in rich yellow curry</td>
+                        <td>₹475</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MMM475"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Matar Masala', 475, 'MMM475')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kofta Curry" data-price="425" data-id="KC425">
+                        <td><b>Kofta Curry</b><br>Deep fried cottage cheese balls dumped with cashew nut gravy</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KC425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kofta Curry', 425, 'KC425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Methi Matar Malai" data-price="425" data-id="MMM425">
+                        <td><b>Methi Matar Malai</b><br>Khoya, green peas and kasoori methi cooked together in creamy gravy</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MMM425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Methi Matar Malai', 425, 'MMM425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Diwani Handi" data-price="395" data-id="DH395">
+                        <td><b>Diwani Handi</b><br>Indian vegetables cooked in curry</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DH395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Diwani Handi', 395, 'DH395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Dal Makhani" data-price="385" data-id="DM385">
+                        <td><b>Dal Makhani</b><br>Fresh dal cooked with fresh butter</td>
+                        <td>₹385</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DM385"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Dal Makhani', 385, 'DM385')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Dal Bukhara" data-price="385" data-id="DB385">
+                        <td><b>Dal Bukhara</b><br>Fresh dal cooked black lentil simmered with spices overnight on tomato finished with cream or butter</td>
+                        <td>₹385</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DB385"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Dal Bukhara', 385, 'DB385')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ghee Dal Tadka" data-price="495" data-id="GDT495">
+                        <td><b>Ghee Dal Tadka</b><br>Fresh dal cooked with pure desi ghee</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GDT495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ghee Dal Tadka', 495, 'GDT495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Bahaduri Kofta" data-price="495" data-id="BK495">
+                        <td><b>Bahaduri Kofta</b><br>Deep fried stuffed dry fruit cheese ball dumpling with palak and cashew nut gravy</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BK495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Bahaduri Kofta', 495, 'BK495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Kolhapuri / Malai Kofta" data-price="395" data-id="VK395">
+                        <td><b>Veg Kolhapuri / Malai Kofta</b><br>Spicy and tasty mixed vegetable based dish has its origin in Kolhapur</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VK395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Kolhapuri / Malai Kofta', 395, 'VK395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Khurchan" data-price="495" data-id="PK495">
+                        <td><b>Paneer Khurchan</b><br>Paneer prepared with onion, tomato, capsicum and few spices</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PK495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Khurchan', 495, 'PK495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Dal Maharani" data-price="495" data-id="DM495">
+                        <td><b>Dal Maharani</b><br>Rich dal cooked with more butter & cream</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-DM495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Dal Maharani', 495, 'DM495')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="main-course-non-veg">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Indian Main Course - Non-Veg</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Main Course Items -->
+                    <tr class="product-item" data-name="Butter Chicken (Punjabi Style)" data-price="595" data-id="BC595">
+                        <td><b>Butter Chicken (Punjabi Style)</b><br>World famous Indian delicacy from Punjab</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Butter Chicken (Punjabi Style)', 595, 'BC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Tikka Butter Masala" data-price="595" data-id="MTBM595">
+                        <td><b>Murgh Tikka Butter Masala</b><br>Famous Indian delicacy from Kashmir</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MTBM595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Tikka Butter Masala', 595, 'MTBM595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kadhai Murgh" data-price="595" data-id="KM595">
+                        <td><b>Kadhai Murgh</b><br>North Indian style chicken curry made with fresh brown spices</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KM595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kadhai Murgh', 595, 'KM595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Murgh Lababdar" data-price="595" data-id="ML595">
+                        <td><b>Murgh Lababdar</b><br>Boneless chicken tikka cooked in chopped tomato & onion gravy</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-ML595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Murgh Lababdar', 595, 'ML595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Madras Curry" data-price="595" data-id="CMC595">
+                        <td><b>Chicken Madras Curry</b><br>Spicy red chicken curry with a unique spice mixture</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CMC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Madras Curry', 595, 'CMC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Rogan Josh" data-price="695" data-id="MRJ695">
+                        <td><b>Mutton Rogan Josh</b><br>A traditional Kashmiri dish flavored with rare spices</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MRJ695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Rogan Josh', 695, 'MRJ695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hari Mirch Ka Bhuna Gosht" data-price="695" data-id="HMGB695">
+                        <td><b>Hari Mirch Ka Bhuna Gosht</b><br>Spicy mutton curry cooked in chilli, mint, coriander, and clarified butter</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HMGB695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hari Mirch Ka Bhuna Gosht', 695, 'HMGB695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fish Curry" data-price="695" data-id="FC695">
+                        <td><b>Fish Curry</b><br>Boneless fish cooked in traditional North Indian gravy and herbs</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FC695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fish Curry', 695, 'FC695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Goan Fish Curry" data-price="695" data-id="GFC695">
+                        <td><b>Goan Fish Curry</b><br>Boneless fish cooked in traditional Goan style</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GFC695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Goan Fish Curry', 695, 'GFC695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Patiala Shahi Gosht" data-price="695" data-id="PSG695">
+                        <td><b>Patiala Shahi Gosht</b><br>Mutton cooked in onion tomato based Patiala gravy</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PSG695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Patiala Shahi Gosht', 695, 'PSG695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Nizami Murgh Haandi" data-price="695" data-id="NMH695">
+                        <td><b>Nizami Murgh Haandi</b><br>Chicken in rich gravy with almond and cashew nuts cooked in Hyderabad style</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-NMH695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Nizami Murgh Haandi', 695, 'NMH695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chooza Khas Makhani" data-price="695" data-id="CKM695">
+                        <td><b>Chooza Khas Makhani</b><br>Char grilled boneless chicken simmered in a fragrant tomato gravy</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CKM695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chooza Khas Makhani', 695, 'CKM695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Madras" data-price="680" data-id="MM680">
+                        <td><b>Mutton Madras</b><br>Spicy yellow mutton curry with a hotter spice mixture</td>
+                        <td>₹680</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MM680"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Madras', 680, 'MM680')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="oriental-main-course">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Oriental Main Course</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Veg Items -->
+                    <tr class="product-item" data-name="Cheese Chilli" data-price="495" data-id="CC495">
+                        <td><b>Cheese Chilli</b><br>Fried cottage cheese cooked with chillies, onions & capsicum</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CC495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Chilli', 495, 'CC495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cheese Szechwan" data-price="495" data-id="CS495">
+                        <td><b>Cheese Szechwan</b><br>Fried cottage cheese cooked with szechwan sauce</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Szechwan', 495, 'CS495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Manchurian" data-price="395" data-id="VM395">
+                        <td><b>Veg Manchurian</b><br>Deep fried veg balls in spicy gravy of corn flour</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VM395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Manchurian', 395, 'VM395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Vegan Thai Curry" data-price="495" data-id="VTC495">
+                        <td><b>Vegan Thai Curry</b><br>Classic Thai dish with galangal, lemongrass, massaman & served with rice</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VTC495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Vegan Thai Curry', 495, 'VTC495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Stir Fried Veg in Hot Garlic Sauce" data-price="395" data-id="SFV395">
+                        <td><b>Stir Fried Veg in Hot Garlic Sauce</b><br>Snow peas, celery, broccoli, water chestnuts & baby corn in hot garlic sauce</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SFV395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Stir Fried Veg in Hot Garlic Sauce', 395, 'SFV395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cantonese Style Chinese Green" data-price="395" data-id="CSCG395">
+                        <td><b>Cantonese Style Chinese Green</b><br>Mild spice exotic vegetable</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CSCG395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cantonese Style Chinese Green', 395, 'CSCG395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cheese Popnut" data-price="395" data-id="CP395">
+                        <td><b>Cheese Popnut</b><br>Crunchy fried Pate bathed in chilli garlic sauce</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CP395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Popnut', 395, 'CP395')">Add to Cart</button></td>
+                    </tr>
+                    <!-- Non-Veg Items -->
+                    <tr class="product-item" data-name="Thai Fish Curry" data-price="625" data-id="TFC625">
+                        <td><b>Thai Fish Curry</b><br>Classic Thai dish bursting with galangal flavor, served with sticky rice</td>
+                        <td>₹625</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TFC625"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Thai Fish Curry', 625, 'TFC625')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Thai Curry" data-price="595" data-id="CTC595">
+                        <td><b>Chicken Thai Curry</b><br>Classic Thai dish bursting with galangal flavor, served with sticky rice</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CTC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Thai Curry', 595, 'CTC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Crispy Chicken" data-price="595" data-id="CC595">
+                        <td><b>Crispy Chicken</b><br>Brittle baby lamb slices cooked with choice of sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Crispy Chicken', 595, 'CC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Lemon Chicken" data-price="595" data-id="LC595">
+                        <td><b>Lemon Chicken</b><br>Sliced chicken cooked with onion, bell peppers in lime sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Lemon Chicken', 595, 'LC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chilli Chicken" data-price="595" data-id="CC595">
+                        <td><b>Chilli Chicken</b><br>Sliced chicken cooked with onion, bell peppers in chilli sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chilli Chicken', 595, 'CC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kung Pao Chicken" data-price="595" data-id="KPC595">
+                        <td><b>Kung Pao Chicken</b><br>Spicy stir-fried Chinese dish with nuts, vegetables & chilli pepper</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KPC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kung Pao Chicken', 595, 'KPC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken 65" data-price="595" data-id="C65">
+                        <td><b>Chicken 65</b><br>Popular South Indian appetizer made with marinated chicken</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-C65"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken 65', 595, 'C65')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section id="continental-main-course">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Continental Main Course (Veg | Non-Veg)</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Veg Items -->
+                    <tr class="product-item" data-name="Cottage Cheese Steak" data-price="495" data-id="CCS495">
+                        <td><b>Cottage Cheese Steak</b><br>Served with herbed rice and exotic veg in chilli tomato peanut sauce</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCS495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cottage Cheese Steak', 495, 'CCS495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Poutine-In Canadian Veg Poutine" data-price="495" data-id="PIVP495">
+                        <td><b>Poutine-In Canadian Veg Poutine</b><br>Crunchy fries, topped with Vegetable & Cheese Sauce</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PIVP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Poutine-In Canadian Veg Poutine', 495, 'PIVP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cannelloni Florentine" data-price="495" data-id="CF495">
+                        <td><b>Cannelloni Florentine</b><br>Spinach & Mozzarella cheese, stuffed cannelloni</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CF495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cannelloni Florentine', 495, 'CF495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Exotic Veg Lasagna" data-price="495" data-id="EVL495">
+                        <td><b>Exotic Veg Lasagna</b><br>A flat sheet of pasta baked with various tender vegetables, cheese, and sauces</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-EVL495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Exotic Veg Lasagna', 495, 'EVL495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Au Gratin" data-price="495" data-id="VAG495">
+                        <td><b>Veg Au Gratin</b><br>All your favourite vegetables dunked in a cheesy white sauce with a crusty golden top</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VAG495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Au Gratin', 495, 'VAG495')">Add to Cart</button></td>
+                    </tr>
+                    <!-- Non-Veg Items -->
+                    <tr class="product-item" data-name="Sambal Fish Steak" data-price="695" data-id="SFS695">
+                        <td><b>Sambal Fish Steak</b><br>Spicy grilled fish, potato wedges, and exotic veg served with sambal sauce</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SFS695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Sambal Fish Steak', 695, 'SFS695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Herb Crusted Fish" data-price="695" data-id="HCF695">
+                        <td><b>Herb Crusted Fish</b><br>In lemon butter white wine sauce over sautéed exotic green and potato</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HCF695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Herb Crusted Fish', 695, 'HCF695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Poutine-In Lamb Poutine" data-price="595" data-id="PILP595">
+                        <td><b>Poutine-In Lamb Poutine</b><br>Crunchy fries, loaded with shredded lamb & Espagnole sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PILP595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Poutine-In Lamb Poutine', 595, 'PILP595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pollo Alla Cacciatore" data-price="595" data-id="PAC595">
+                        <td><b>Pollo Alla Cacciatore</b><br>Scrumptious chicken prepared “hunter style“ served with herb rice</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PAC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pollo Alla Cacciatore', 595, 'PAC595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pullet Involtini" data-price="595" data-id="PI595">
+                        <td><b>Pullet Involtini</b><br>Stuffed chicken breast served with potato, grill veg, and devil sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PI595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pullet Involtini', 595, 'PI595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Fricassee" data-price="595" data-id="CF595">
+                        <td><b>Chicken Fricassee</b><br>Shredded chicken seasoned with herbs and spices, cream & white wine served with rice</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CF595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Fricassee', 595, 'CF595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Poutine-In Chicken Poutine" data-price="595" data-id="PIC595">
+                        <td><b>Poutine-In Chicken Poutine</b><br>Crunchy fries, topped with chicken & cheese or Espagnole sauce</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PIC595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Poutine-In Chicken Poutine', 595, 'PIC595')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="side-order">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Side Order</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="product-item" data-name="Cheese Onion Ring" data-price="295" data-id="COR295">
+                        <td><b>Cheese Onion Ring</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-COR295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Onion Ring', 295, 'COR295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Jalapeno Cheese Poppers" data-price="295" data-id="JCP295">
+                        <td><b>Jalapeno Cheese Poppers</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-JCP295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Jalapeno Cheese Poppers', 295, 'JCP295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cheese Garlic Bread" data-price="295" data-id="CGB295">
+                        <td><b>Cheese Garlic Bread</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CGB295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Garlic Bread', 295, 'CGB295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Baked Nachos" data-price="295" data-id="BN295">
+                        <td><b>Baked Nachos</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BN295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Baked Nachos', 295, 'BN295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="French Fries" data-price="245" data-id="FF245">
+                        <td><b>French Fries</b></td>
+                        <td>₹245</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FF245"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('French Fries', 245, 'FF245')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Garlic Bread" data-price="295" data-id="GB295">
+                        <td><b>Garlic Bread</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GB295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Garlic Bread', 295, 'GB295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cheese Chilly Toast (4 Pcs)" data-price="295" data-id="CCT295">
+                        <td><b>Cheese Chilly Toast (4 Pcs)</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCT295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cheese Chilly Toast (4 Pcs)', 295, 'CCT295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Queen Special French Fries Cheese" data-price="595" data-id="QSF595">
+                        <td><b>Queen Special French Fries Cheese</b><br>Crispy French fries topped with two types of melted cheese, smoky flavor, and fresh herbs</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QSF595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Special French Fries Cheese', 595, 'QSF595')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="biryani-rice-noodles-raita">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Biryani / Rice / Noodles / Raita</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Veg Items -->
+                    <tr class="product-item" data-name="Hyderabadi Veg Biryani" data-price="395" data-id="HVB395">
+                        <td><b>Hyderabadi Veg Biryani</b><br>Combination of garden fresh vegetables and aromatic basmati rice served with raita</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HVB395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hyderabadi Veg Biryani', 395, 'HVB395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pan Burnt Noodles" data-price="395" data-id="PBN395">
+                        <td><b>Pan Burnt Noodles</b><br>Hot garlic vegetables lying on bed of Pan-Fried Noodles</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PBN395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pan Burnt Noodles', 395, 'PBN395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chow Mein / Hakka Noodles" data-price="395" data-id="CMHN395">
+                        <td><b>Chow Mein / Hakka Noodles</b><br>Wok fried noodles with seasonal vegetables and bean sprouts</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CMHN395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chow Mein / Hakka Noodles', 395, 'CMHN395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Fried Rice" data-price="395" data-id="VFR395">
+                        <td><b>Veg Fried Rice</b><br>Traditional wok fried rice tossed with oriental vegetables & spices</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VFR395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Fried Rice', 395, 'VFR395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Pulao / Peas Pulao" data-price="295" data-id="VPP295">
+                        <td><b>Veg Pulao / Peas Pulao</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VPP295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Pulao / Peas Pulao', 295, 'VPP295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Burnt Garlic Rice" data-price="295" data-id="BGR295">
+                        <td><b>Burnt Garlic Rice</b></td>
+                        <td>₹295</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BGR295"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Burnt Garlic Rice', 295, 'BGR295')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Steam Rice / Jeera Rice" data-price="275" data-id="SRJR275">
+                        <td><b>Steam Rice / Jeera Rice</b></td>
+                        <td>₹275</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SRJR275"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Steam Rice / Jeera Rice', 275, 'SRJR275')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Raita" data-price="185/155" data-id="COR185">
+                        <td><b>Choice of Raita</b><br>Mix/Pineapple/Burani Raita/Plain Curd</td>
+                        <td>₹185/₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-COR185"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Raita', 185, 'COR185')">Add to Cart</button></td>
+                    </tr>
+                    <!-- Non-Veg Items -->
+                    <tr class="product-item" data-name="Hyderabadi Gosht Ki Biryani" data-price="595" data-id="HGKB595">
+                        <td><b>Hyderabadi Gosht Ki Biryani</b><br>Saffron and mint flavoured Hyderabad style mutton Biryani served with raita</td>
+                        <td>₹595</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HGKB595"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hyderabadi Gosht Ki Biryani', 595, 'HGKB595')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Hyderabadi Chicken Dum Biryani" data-price="525" data-id="HCDB525">
+                        <td><b>Hyderabadi Chicken Dum Biryani</b><br>Saffron and mint flavoured Hyderabad chicken Biryani served with raita</td>
+                        <td>₹525</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HCDB525"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hyderabadi Chicken Dum Biryani', 525, 'HCDB525')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Noodles" data-price="395" data-id="CN395">
+                        <td><b>Chicken Noodles</b><br>Hot garlic chicken & vegetables lying on bed of Pan-Fried Noodles</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CN395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Noodles', 395, 'CN395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Fried Rice" data-price="395" data-id="CFR395">
+                        <td><b>Chicken Fried Rice</b><br>Traditional wok fried rice tossed with egg, chicken & spices</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CFR395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Fried Rice', 395, 'CFR395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Egg Fried Rice" data-price="375" data-id="EFR375">
+                        <td><b>Egg Fried Rice</b><br>Traditional wok fried rice tossed with egg & spices</td>
+                        <td>₹375</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-EFR375"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Egg Fried Rice', 375, 'EFR375')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="indian-bread">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Choice of Indian Bread</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Indian Bread Items -->
+                    <tr class="product-item" data-name="Tandoori Roti" data-price="55" data-id="TR55">
+                        <td><b>Tandoori Roti</b></td>
+                        <td>₹55</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TR55"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tandoori Roti', 55, 'TR55')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Missi Roti" data-price="65" data-id="MR65">
+                        <td><b>Missi Roti</b></td>
+                        <td>₹65</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MR65"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Missi Roti', 65, 'MR65')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Butter Roti" data-price="65" data-id="BR65">
+                        <td><b>Butter Roti</b></td>
+                        <td>₹65</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BR65"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Butter Roti', 65, 'BR65')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Plain Naan" data-price="95" data-id="PN95">
+                        <td><b>Plain Naan</b></td>
+                        <td>₹95</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PN95"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Plain Naan', 95, 'PN95')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Onion Kulcha" data-price="125" data-id="OK125">
+                        <td><b>Onion Kulcha</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-OK125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Onion Kulcha', 125, 'OK125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pudina/Hari Mirch Paratha" data-price="125" data-id="PM125">
+                        <td><b>Pudina/Hari Mirch Paratha</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PM125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pudina/Hari Mirch Paratha', 125, 'PM125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Lal Mirch/Ajwaini Paratha" data-price="125" data-id="LAP125">
+                        <td><b>Lal Mirch/Ajwaini Paratha</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LAP125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Lal Mirch/Ajwaini Paratha', 125, 'LAP125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Garlic Naan" data-price="125" data-id="GN125">
+                        <td><b>Garlic Naan</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GN125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Garlic Naan', 125, 'GN125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Butter Naan" data-price="125" data-id="BN125">
+                        <td><b>Butter Naan</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BN125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Butter Naan', 125, 'BN125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Lachha Paratha" data-price="125" data-id="LP125">
+                        <td><b>Lachha Paratha</b></td>
+                        <td>₹125</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-LP125"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Lachha Paratha', 125, 'LP125')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Kulcha" data-price="165" data-id="PK165">
+                        <td><b>Paneer Kulcha</b></td>
+                        <td>₹165</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PK165"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Kulcha', 165, 'PK165')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Bread Basket" data-price="375" data-id="BB375">
+                        <td><b>Bread Basket</b><br>(Roti | Butter Naan | Missi | Lachha)</td>
+                        <td>₹375</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BB375"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Bread Basket', 375, 'BB375')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="notes">
+                * Government taxes extra as per actual<br>
+                * In case of any allergies, kindly inform your server before.<br>
+                * Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!
+            </p>
+        </section>
+        
+        <section id="fusion-sizzler">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Fusion Sizzler Veg/Non-Veg</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fusion Sizzler Items -->
+                    <tr class="product-item" data-name="Chhupa Rustum Kebab" data-price="675" data-id="CR675">
+                        <td><b>Chhupa Rustum Kebab</b><br>Grilled savory snack made with paneer, potato, and peas mixed with spices</td>
+                        <td>₹675</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CR675"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chhupa Rustum Kebab', 675, 'CR675')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Tikka Sizzler" data-price="675" data-id="PTS675">
+                        <td><b>Paneer Tikka Sizzler</b><br>Pieces of paneer marinated in tandoori masala, grilled to perfection, and served with pulao</td>
+                        <td>₹675</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PTS675"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Tikka Sizzler', 675, 'PTS675')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chinese Queen Sizzler" data-price="675" data-id="CQS675">
+                        <td><b>Chinese Queen Sizzler</b><br>Vegetarian Chinese sizzler with hakka noodles, momos, grilled paneer, kimchi, beans, and chilli sauce</td>
+                        <td>₹675</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CQS675"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chinese Queen Sizzler', 675, 'CQS675')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Wok Tok Sizzler" data-price="675" data-id="WTS675">
+                        <td><b>Wok Tok Sizzler</b><br>Stir-fried Indo-Chinese style paneer with green chillies, peppers, and a special sauce</td>
+                        <td>₹675</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-WTS675"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Wok Tok Sizzler', 675, 'WTS675')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mexican Sizzler" data-price="675" data-id="MS675">
+                        <td><b>Mexican Sizzler</b><br>Sizzling quinoa patties served with rice and sautéed vegetables</td>
+                        <td>₹675</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MS675"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mexican Sizzler', 675, 'MS675')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Bhatti Ka Murg" data-price="750" data-id="BKM750">
+                        <td><b>Bhatti Ka Murg</b><br>Chicken pieces marinated in hung curd with roasted onion paste and spices</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BKM750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Bhatti Ka Murg', 750, 'BKM750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Mutton Tawa Sizzler" data-price="750" data-id="MTS750">
+                        <td><b>Mutton Tawa Sizzler</b><br>Mutton pieces marinated with Indian spices, roasted by clay oven, and served on a sizzler plate</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MTS750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mutton Tawa Sizzler', 750, 'MTS750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Gilafi Kebab" data-price="750" data-id="CGK750">
+                        <td><b>Chicken Gilafi Kebab</b><br>Chicken kebabs cooked with aromatic spices in a cover</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CGK750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Gilafi Kebab', 750, 'CGK750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fish Goujons" data-price="775" data-id="FG775">
+                        <td><b>Fish Goujons</b><br>Strips of fish coated in breadcrumbs and deep-fried</td>
+                        <td>₹775</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FG775"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fish Goujons', 775, 'FG775')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Goujons" data-price="750" data-id="CG750">
+                        <td><b>Chicken Goujons</b><br>Fried crispy chicken goujons coated in panko</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CG750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Goujons', 750, 'CG750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Cajun Fish" data-price="750" data-id="CF750">
+                        <td><b>Cajun Fish</b><br>Fish seasoned with a mix of spices including black pepper, cayenne, and paprika</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CF750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Cajun Fish', 750, 'CF750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Harissa Marinated Chicken" data-price="900" data-id="HMC900">
+                        <td><b>Harissa Marinated Chicken</b><br>Spicy North African chicken made with harissa, olive oil, lemon juice, garlic, and spices</td>
+                        <td>₹900</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HMC900"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Harissa Marinated Chicken', 900, 'HMC900')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Combo Sizzler" data-price="750" data-id="CCS750">
+                        <td><b>Chicken Combo Sizzler</b><br>Chicken breast, chicken mince steak, and chicken sausage in pepper sauce</td>
+                        <td>₹750</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCS750"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Combo Sizzler', 750, 'CCS750')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="King Sizzler (Tandoor se)" data-price="900" data-id="KST900">
+                        <td><b>King Sizzler (Tandoor se)</b><br>Marinated crispy chicken breast served with roasted vegetables and rice on a hot plate</td>
+                        <td>₹900</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KST900"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('King Sizzler (Tandoor se)', 900, 'KST900')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="notes">
+                * Government taxes extra as per actual<br>
+                * In case of any allergies, kindly inform your server before.<br>
+                * Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!
+            </p>
+        </section>
+        
+        <section id="desserts">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Desserts</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Desserts Items -->
+                    <tr class="product-item" data-name="Hot Gulab Jamun" data-price="165" data-id="HGJ165">
+                        <td><b>Hot Gulab Jamun (2pc)</b></td>
+                        <td>₹165</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-HGJ165"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Hot Gulab Jamun', 165, 'HGJ165')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Choice of Ice Cream" data-price="155" data-id="CIC155">
+                        <td><b>Choice of Ice Cream (2 Scoops)</b><br>Vanilla / Chocolate / Strawberry / Butterscotch</td>
+                        <td>₹155</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CIC155"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Choice of Ice Cream', 155, 'CIC155')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tutty Fruity" data-price="225" data-id="TF225">
+                        <td><b>Tutty Fruity</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TF225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tutty Fruity', 225, 'TF225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Rasmalai" data-price="195" data-id="RM195">
+                        <td><b>Rasmalai (2pc)</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RM195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Rasmalai', 195, 'RM195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Rasgulla" data-price="185" data-id="RG185">
+                        <td><b>Rasgulla (2pc)</b></td>
+                        <td>₹185</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-RG185"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Rasgulla', 185, 'RG185')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Shahi Tukda" data-price="195" data-id="ST195">
+                        <td><b>Shahi Tukda</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-ST195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Shahi Tukda', 195, 'ST195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Gajar Ka Halwa" data-price="245" data-id="GKH245">
+                        <td><b>Gajar Ka Halwa (Seasonal)</b></td>
+                        <td>₹245</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-GKH245"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Gajar Ka Halwa', 245, 'GKH245')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Moong Dal Halwa" data-price="195" data-id="MDH195">
+                        <td><b>Moong Dal Halwa</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MDH195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Moong Dal Halwa', 195, 'MDH195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Kesar Kheer" data-price="195" data-id="KK195">
+                        <td><b>Kesar Kheer</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-KK195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Kesar Kheer', 195, 'KK195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Almond Phirni" data-price="195" data-id="AP195">
+                        <td><b>Almond Phirni</b></td>
+                        <td>₹195</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-AP195"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Almond Phirni', 195, 'AP195')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fruit Custard" data-price="225" data-id="FC225">
+                        <td><b>Fruit Custard</b></td>
+                        <td>₹225</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FC225"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fruit Custard', 225, 'FC225')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chocolate Sundae" data-price="285" data-id="CS285">
+                        <td><b>Chocolate Sundae</b><br>Chocolate ice cream, brownie, cookies, and chocolate sauce</td>
+                        <td>₹285</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS285"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chocolate Sundae', 285, 'CS285')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chocolate Walnut Brownie" data-price="285" data-id="CW285">
+                        <td><b>Chocolate Walnut Brownie</b><br>Fudge walnut brownie loaded with crunchy walnut and served with vanilla ice cream</td>
+                        <td>₹285</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CW285"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chocolate Walnut Brownie', 285, 'CW285')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="burgers-wraps-sandwiches">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Burger | Wrap | Sandwiches</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Burger, Wrap, and Sandwich Items -->
+                    <tr class="product-item" data-name="Paneer Tikka Submarine" data-price="355" data-id="PTS355">
+                        <td><b>Paneer Tikka Submarine</b><br>Grilled foot-long bread stuffed with Paneer Tikkas served with fries & house salad</td>
+                        <td>₹355</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PTS355"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Tikka Submarine', 355, 'PTS355')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Club Sandwich" data-price="355" data-id="VCS355">
+                        <td><b>Veg Club Sandwich</b><br>Traditionally toasted layered with coleslaw, lettuce, tomato, mayonnaise & cheese with choice of White/Brown bread, fries & house salad</td>
+                        <td>₹355</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VCS355"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Club Sandwich', 355, 'VCS355')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Crunchy Veg Burger" data-price="355" data-id="CVB355">
+                        <td><b>Crunchy Veg Burger</b><br>Delicious, lip-smacking veg patty in burger bun served with fries & house salad</td>
+                        <td>₹355</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CVB355"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Crunchy Veg Burger', 355, 'CVB355')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Paneer Tikka Wrap" data-price="355" data-id="PTW355">
+                        <td><b>Paneer Tikka Wrap</b><br>Tortilla bread stuffed with Paneer Tikka & Spices served with fries, house salad, hummus, mukhalil & tzatziki</td>
+                        <td>₹355</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PTW355"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Paneer Tikka Wrap', 355, 'PTW355')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Veg Grilled Sandwich" data-price="325" data-id="VGS325">
+                        <td><b>Veg Grilled Sandwich</b><br>It’s a combination of spicy chutney & vegetables</td>
+                        <td>₹325</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-VGS325"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Veg Grilled Sandwich', 325, 'VGS325')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Classic Chicken Burger" data-price="395" data-id="CCB395">
+                        <td><b>Classic Chicken Burger</b><br>Deep-fried skinless & boneless minced breast of chicken on a bun served with fries & house salad</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CCB395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Classic Chicken Burger', 395, 'CCB395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Tikka Submarine" data-price="395" data-id="CTS395">
+                        <td><b>Chicken Tikka Submarine</b><br>Grilled foot-long bread stuffed with chicken tikkas served with fries & house salad</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CTS395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Tikka Submarine', 395, 'CTS395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Club Sandwich" data-price="395" data-id="CS395">
+                        <td><b>Club Sandwich</b><br>Traditionally toasted layered with chicken, fried bacon, lettuce, tomato & mayonnaise with choice of White/Brown bread served with fries & house salad</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CS395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Club Sandwich', 395, 'CS395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Tikka Wrap" data-price="395" data-id="CTW395">
+                        <td><b>Chicken Tikka Wrap</b><br>Tortilla bread stuffed with chicken tikka & spices served with fries, house salad, hummus, mukhalil & tzatziki</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CTW395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Tikka Wrap', 395, 'CTW395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken Grilled Sandwich" data-price="395" data-id="CGS395">
+                        <td><b>Chicken Grilled Sandwich</b><br>Tender grilled chicken on a bed of lettuce, cheese & mayo</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CGS395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken Grilled Sandwich', 395, 'CGS395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Q95 Chicken Club" data-price="695" data-id="Q95CC695">
+                        <td><b>Q95 Chicken Club</b><br>Iceberg lettuce, tomato, cucumber, English cheddar cheese, fried egg, and warm grilled chicken breast</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-Q95CC695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Q95 Chicken Club', 695, 'Q95CC695')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Fish and Chips" data-price="695" data-id="FAC695">
+                        <td><b>Fish and Chips</b><br>Batter-fried fish fillet served with fries, lemon, and tartare sauce</td>
+                        <td>₹695</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FAC695"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Fish and Chips', 695, 'FAC695')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="pizzas">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Wooden Fire Thin Crust (Pizza)</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Pizza Items -->
+                    <tr class="product-item" data-name="Queen Special Pizza" data-price="425" data-id="QSP425">
+                        <td><b>Queen Special Pizza</b><br>Paneer Tikka Makhani Pizza</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QSP425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Special Pizza', 425, 'QSP425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Screamers" data-price="425" data-id="SC425">
+                        <td><b>Screamers</b><br>Portobello, Shitake, Porcini Mushroom with cheese</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SC425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Screamers', 425, 'SC425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Margherita" data-price="395" data-id="MG395">
+                        <td><b>Margherita</b><br>Tomato basil and cheese</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MG395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Margherita', 395, 'MG395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Ortolana" data-price="395" data-id="OR395">
+                        <td><b>Ortolana</b><br>Assorted pepper, asparagus, baby corn, artichokes and cheese</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-OR395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Ortolana', 395, 'OR395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Queen Special Indo Mexican" data-price="495" data-id="QSIM495">
+                        <td><b>Queen Special Indo Mexican</b><br>Mutton Keema and Jalapeno</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-QSIM495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Queen Special Indo Mexican', 495, 'QSIM495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Pepperoni" data-price="495" data-id="PEP495">
+                        <td><b>Pepperoni</b><br>Pepperoni, Olives & Chilli Flakes</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PEP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Pepperoni', 495, 'PEP495')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Tuscan" data-price="425" data-id="TUC425">
+                        <td><b>Tuscan</b><br>Grill chicken rosemary topped with black olives and cheese</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-TUC425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Tuscan', 425, 'TUC425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="BBQ Chicken" data-price="425" data-id="BBQ425">
+                        <td><b>BBQ Chicken</b><br>BBQ chicken, onion rings, assorted pepper & cheese</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-BBQ425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('BBQ Chicken', 425, 'BBQ425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Capricciosa" data-price="495" data-id="CAP495">
+                        <td><b>Capricciosa</b><br>Chicken ham, eggs, artichoke, mushrooms and olives</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CAP495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Capricciosa', 495, 'CAP495')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="pasta">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Pasta</th>
+                    </tr>
+                    <tr>
+                        <th>Item Details</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Cart Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Pasta Items -->
+                    <tr class="product-item" data-name="Mushroom Risotto" data-price="425" data-id="MR425">
+                        <td><b>Mushroom Risotto</b><br>An Italian short grain arborio rice with Italian spices</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-MR425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Mushroom Risotto', 425, 'MR425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Creamy Wild Mushroom Fettuccine" data-price="425" data-id="CWMF425">
+                        <td><b>Creamy Wild Mushroom Fettuccine</b><br>Thinly sliced champagne and mushroom with fresh grated parmesan oil and ground black pepper</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CWMF425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Creamy Wild Mushroom Fettuccine', 425, 'CWMF425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Penne Arrabbiata" data-price="395" data-id="PA395">
+                        <td><b>Penne Arrabbiata</b><br>Traditional arrabbiata sauce served with penne</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PA395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Penne Arrabbiata', 395, 'PA395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Spaghetti Aglio e Olio Peperoncino" data-price="395" data-id="SAOP395">
+                        <td><b>Spaghetti Aglio e Olio Peperoncino</b><br>Traditional Italian dish from Naples, pressed garlic with red chili flakes and tossed with spaghetti</td>
+                        <td>₹395</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-SAOP395"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Spaghetti Aglio e Olio Peperoncino', 395, 'SAOP395')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Farfalle Bolognese" data-price="425" data-id="FB425">
+                        <td><b>Farfalle Bolognese</b><br>Minced lamb flavored with tomato sauce and Italian spices</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-FB425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Farfalle Bolognese', 425, 'FB425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Penne Chicken Alfredo" data-price="425" data-id="PCA425">
+                        <td><b>Penne Chicken Alfredo</b><br>Tube-shaped pasta served with chicken & authentic Alfredo sauce</td>
+                        <td>₹425</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-PCA425"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Penne Chicken Alfredo', 425, 'PCA425')">Add to Cart</button></td>
+                    </tr>
+                    <tr class="product-item" data-name="Chicken & Asparagus" data-price="495" data-id="CA495">
+                        <td><b>Chicken & Asparagus</b><br>Choice of Pasta: Penne / Fettuccine / Spaghetti / Farfalle</td>
+                        <td>₹495</td>
+                        <td class="quantity"><input type="number" value="1" min="1"></td>
+                        <td class="cart-status" id="status-CA495"><img src="images/waiter.png" class="waiter"></td>
+                        <td><button onclick="addToCart('Chicken & Asparagus', 495, 'CA495')">Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        
+    </div>
+<!-- The Modal -->
+<div id="zoomModal" class="zoom-modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="zoom-modal-content" id="img01">
+  </div>
+  
+  <!-- Cart section -->
+  <div id="cart">
+    <h2>Cart</h2>
+    <ul id="cartItems"></ul>
+    <p id="cartMessage"></p>
+  </div>
+  
+  <!-- Checkout form section -->
+  <div id="checkoutForm">
+    <h2 style="color: aliceblue;">Checkout</h2>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <div class="form-group">
+          <label for="diningOption">Choose your dining option:</label>
+          <select id="diningOption" onchange="showInputField()">
+              <option value="">Select an option</option>
+              <option value="package">Packaging</option>
+              <option value="eat">Eat here</option>
+          </select>
+      </div>
+      <div class="form-group hidden" id="responseGroup">
+          <label for="address" id="responseLabel">Enter your address:</label>
+          <input type="text" id="address" name="response" required>
+      </div>
+       
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" required>
+        <label for="alternateContact">Alternate Contact:</label>
+        <input type="text" id="alternateContact">
+        <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+    </form>
+  </div>
+  
+  
+      <!-- Footer section -->
+      <footer id="footer">
+         
+        
+            <div class="footer-content">
+                <p><strong>Government taxes extra as per actual</strong></p>
+                <p>Kindly allow us 15-20 minutes to serve your food fresh!!</p>
+                <div class="social-media">
+                    <p>Follow Us:</p>
+                    <a href="https://www.instagram.com/parkqueenhotel" target="_blank">Instagram</a> |
+                    <a href="https://www.facebook.com/parkqueenhotel" target="_blank">Facebook</a>
+                </div>
+                <div class="contact-info">
+                    <p><strong>Park Queen Hotel & Resorts</strong></p>
+                    <p>ADDRESS: Opp Devi Lal Park, Delhi by Pass Road, Rohtak, Haryana</p>
+                </div>
+            </div>
+            <div class="footer-logo">
+                <!-- You can add a logo or any other image here -->
+            </div>
+      
+        
+      </footer>
+  
+      <!-- JavaScript file inclusion (if any) -->
+      <script src="script.js"></script>
+   
+  </body>
+  </html>
+  
