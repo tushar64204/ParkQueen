@@ -71,9 +71,9 @@ function toggleCheckout() {
     const checkoutForm = document.getElementById('checkoutForm');
     const cartMessage = document.getElementById('cartMessage');
 
-    if (total >= 99) {
+    if (total >= 9) {
         checkoutForm.style.display = 'block';
-        cartMessage.innerHTML = '<span style="color: green; background-color: white; padding: 2px;"> <b> Congratulations! Your cart total exceeds ₹99. Please proceed to checkout.</b> </span>';
+        cartMessage.innerHTML = '<span style="color: green; background-color: white; padding: 2px;"> <b>Thank you for choosing our digital menu card! Going digital helps save trees. Please proceed to checkout; your cart is ready.</b> </span>';
     } else {
         checkoutForm.style.display = 'none';
         const amountNeeded = 99 - total;
@@ -122,6 +122,8 @@ function generateInvoice() {
                 .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
                 .invoice-header { display: flex; justify-content: space-between; align-items: center; }
                 .invoice-header h1 { margin: 0; }
+        
+               
                 .invoice-header img { width: 100px; }
                 .invoice-info { text-align: right; }
                 .invoice-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
@@ -134,23 +136,48 @@ function generateInvoice() {
                 .payment-options { text-align: center; margin-top: 20px; }
                 .payment-options button { margin: 5px; padding: 10px 20px; background-color: #28a745; color: #fff; border: none; cursor: pointer; }
                 .payment-options button:hover { background-color: #218838; }
+                 /* Normal print styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .invoice-container, .invoice-container * {
+                visibility: visible;
+            }
+            .invoice-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
             </style>
             <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
         </head>
         <body>
             <div class="invoice-container">
                 <div class="invoice-header">
-                    <h1>Shabari Delights Restaurant</h1>
-                    <img src="/images/logo.png" alt="Shabari Delights Restaurant Logo">
-                    <div class="invoice-info">
+                    <h1>Park Queen Hotel & Resorts</h1>
+                    
+                    <h3>Invoice</h3>
+                   
+                </div>
+                <img src="/images/logo2.png" width="100" height="auto" alt="Park Queen Hotel & Resorts Logo">
+                
+                  <div class="invoice-info">
                         <p>Bill Number: ${Math.floor(Math.random() * 100000)}</p>
                         <p>Date: ${new Date().toLocaleDateString()}</p>
                         <p>Time: ${new Date().toLocaleTimeString()}</p>
                     </div>
-                </div>
+                     <div class="invoice-footer">
+                <h3>Contact Details</h3>
+              
+                <p>Address: Rohtak, Haryana</p>
+                <p>Contact: +91-1262-469242 </p>
+                <p>Email Id: fom@parkqueenhotels.com</p>
+            </div>
                 <h3>Customer Details</h3>
                 <p>Name: ${name}</p>
-                <p>Address/Table no.: ${address}</p>
+                <p>Room number.: ${address}</p>
                 <p>Contact Number: ${contact}</p>
                 <p>Alternate Contact Number: ${alternateContact}</p>
   
@@ -205,15 +232,11 @@ function generateInvoice() {
                     </tr>
                 </tbody>
             </table>
-            <div class="invoice-footer">
-                <h3>Shop Details</h3>
-                <p>Shop Owner: Tushar</p>
-                <p>Address: Rohtak, Haryana</p>
-                <p>Contact: 9817409607</p>
-                <p>Alternate Contact: 9992659320</p>
+           
             </div>
             <div class="invoice-buttons">
                 <button onclick="window.print()">Print Invoice</button>
+                
                 <button onclick="backToShopping()">Back to Shopping</button>
             </div>
             <div class="payment-options">
@@ -263,7 +286,7 @@ function generateInvoice() {
 
                 function sendOrderOnWhatsApp() {
                     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-                    const message = \`Order Details:\\nName: ${name}\\nAddress/Table: ${address}\\nContact: ${contact}\\nTotal: ₹${grandTotal}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
+                    const message = \`Order Details:\\nName: ${name}\\nRoom Number: ${address}\\nContact: ${contact}\\nTotal: ₹${grandTotal}\\nItems: ${cart.map(item => item.name + ' - ₹' + item.price + ' Qty: ' + item.quantity).join(', ')}\\nPayment Method: \${paymentMethod}\\nPlease share the payment confirmation.\`;
 
                     const url = \`https://wa.me/919817409607?text=\${encodeURIComponent(message)}\`;
                     window.open(url, '_blank');
@@ -306,13 +329,13 @@ function showInputField() {
         responseGroup.classList.remove('hidden');
 
         if (diningOption === 'package') {
-            responseLabel.innerText = 'Enter your address:';
+            responseLabel.innerText = 'Enter your room number:';
             address.setAttribute('name', 'address');
-            address.setAttribute('placeholder', 'Enter your address');
+            address.setAttribute('placeholder', 'Enter your room number');
         } else if (diningOption === 'eat') {
-            responseLabel.innerText = 'Enter your table number:';
+            responseLabel.innerText = 'Enter your room number:';
             address.setAttribute('name', 'tableNumber');
-            address.setAttribute('placeholder', 'Enter your table number');
+            address.setAttribute('placeholder', 'Enter your room number');
         }
     }
 }

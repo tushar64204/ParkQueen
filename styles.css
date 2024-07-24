@@ -164,7 +164,57 @@ input, select {
     border-radius: 8px;
     z-index: 1;
 }
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #000000;
+        z-index: 1000;
+        text-align: center;
+    }
 
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+        color: #f0f0f0;
+        font-size: xx-small;
+    }
+
+    nav a {
+        padding: 10px;
+        color: #f0f0f0;
+        
+    }
+}
+footer p {
+    margin: 5px 0;
+    
+    color: #ffffff;
+}
+
+nav {
+    margin: 10px 0;
+    font-size: small;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
 .menu-image {
     width: 100%;
     height: auto;
