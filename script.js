@@ -119,6 +119,9 @@ function generateInvoice() {
             <title>Invoice</title>
             <style>
                   body { font-family: Arial, sans-serif; }
+
+        .outsideinvoice-container { width: 85%; margin: auto; padding: 10px; background-color: #fff; box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
+
         .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
         .invoice-header { text-align: center; background-color: #4b23a0; color: white; padding: 10px 0; position: relative; }
         .invoice-header h1 { margin: 0; }
@@ -154,7 +157,7 @@ function generateInvoice() {
     width: 200px; 
     position: absolute; 
     top: 2px; 
-    left: 10%; 
+    left: 12%; 
     transform: translateX(-50%); 
 }
 
@@ -175,7 +178,7 @@ function generateInvoice() {
       /* General styles for the bell icon */
         .notification-icon {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
             background-color: #FFD700; /* Yellow background */
             color: #333;
@@ -203,7 +206,7 @@ function generateInvoice() {
 
         /* Bell icon */
         .notification-icon::before {
-            content: url('https://upload.wikimedia.org/wikipedia/commons/3/34/Font_Awesome_5_solid_bell.svg');
+            content: url('./images/waiter.png');
             display: block;
             width: 24px;
             height: 24px;
@@ -214,7 +217,7 @@ function generateInvoice() {
         .order-completion-message {
             position: fixed;
             bottom: 90px; /* Above the button */
-            right: 20px;
+            right: 40px;
             background-color: #f9f9f9;
             color: #333;
             padding: 15px;
@@ -255,6 +258,7 @@ function generateInvoice() {
             <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
         </head>
         <body>
+         <div class="outsideinvoice-container">
             <div class="invoice-container">
                 <div class="invoice-header">
                     <h1>Restaurant Bill</h1>
@@ -431,6 +435,7 @@ function generateInvoice() {
                     window.location.href = 'index.html';
                 }
             </script>
+            </div>
         </body>
         </html>
     `;
