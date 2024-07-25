@@ -319,3 +319,7 @@ th {
         padding: 8px 16px;
     }
 }
+
+.mandatory {
+    color: red;
+}

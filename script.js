@@ -118,25 +118,25 @@ function generateInvoice() {
         <head>
             <title>Invoice</title>
             <style>
-                body { font-family: Arial, sans-serif; }
-                .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-                .invoice-header { display: flex; justify-content: space-between; align-items: center; }
-                .invoice-header h1 { margin: 0; }
-        
-               
-                .invoice-header img { width: 100px; }
-                .invoice-info { text-align: right; }
-                .invoice-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                .invoice-table th { background-color: lightblue; }
-                .invoice-footer { text-align: right; margin-top: 20px; }
-                .invoice-buttons { text-align: center; margin-top: 20px; }
-                .invoice-buttons button { margin: 5px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; }
-                .invoice-buttons button:hover { background-color: #0056b3; }
-                .payment-options { text-align: center; margin-top: 20px; }
-                .payment-options button { margin: 5px; padding: 10px 20px; background-color: #28a745; color: #fff; border: none; cursor: pointer; }
-                .payment-options button:hover { background-color: #218838; }
-                 /* Normal print styles */
+                  body { font-family: Arial, sans-serif; }
+        .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .invoice-header { text-align: center; background-color: #4b23a0; color: white; padding: 10px 0; position: relative; }
+        .invoice-header h1 { margin: 0; }
+        .invoice-header img { width: 100px; position: absolute; top: 10px; right: 20px; }
+        .invoice-info { display: flex; justify-content: space-between; margin-top: 20px; }
+        .bill-to { background-color: #4b23a0; color: white; padding: 5px; margin-top: 20px; }
+        .bill-to p { margin: 0; }
+        .invoice-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .invoice-table th, .invoice-table td { border: 1px solid #4b23a0; padding: 8px; text-align: left; }
+        .invoice-table th { background-color: #4b23a0; color: white; }
+        .invoice-footer { text-align: right; margin-top: 20px; }
+        .invoice-footer p { margin: 0; }
+        .invoice-buttons { text-align: center; margin-top: 20px; }
+        .invoice-buttons button { margin: 5px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; }
+        .invoice-buttons button:hover { background-color: #0056b3; }
+        .payment-options { text-align: center; margin-top: 20px; }
+        .payment-options button { margin: 5px; padding: 10px 20px; background-color: #28a745; color: #fff; border: none; cursor: pointer; }
+        .payment-options button:hover { background-color: #218838; }
         @media print {
             body * {
                 visibility: hidden;
@@ -150,41 +150,147 @@ function generateInvoice() {
                 top: 0;
             }
         }
-            </style>
+        .invoice-logo img { 
+    width: 200px; 
+    position: absolute; 
+    top: 2px; 
+    left: 10%; 
+    transform: translateX(-50%); 
+}
+
+/* Styles for the payment method */
+.payment-method {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Styles for the notes */
+.notes {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    text-align: left;
+}
+      /* General styles for the bell icon */
+        .notification-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FFD700; /* Yellow background */
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Red dot on the bell icon */
+        .notification-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bell icon */
+        .notification-icon::before {
+            content: url('https://upload.wikimedia.org/wikipedia/commons/3/34/Font_Awesome_5_solid_bell.svg');
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: 0 auto;
+        }
+
+        /* General styles for the message container */
+        .order-completion-message {
+            position: fixed;
+            bottom: 90px; /* Above the button */
+            right: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            z-index: 999;
+            max-width: 250px;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+     /* Container for the button */
+        .whatsapp-order-button {
+            position: relative;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* WhatsApp green color */
+            color: white;
+            border: none;
+            border-radius: 20%;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Hover effect */
+        .whatsapp-order-button:hover {
+            background-color: #128C7E; /* Darker green for hover */
+            transform: scale(1.1);
+        }
+
+                 </style>
             <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
         </head>
         <body>
             <div class="invoice-container">
                 <div class="invoice-header">
-                    <h1>Park Queen Hotel & Resorts</h1>
+                    <h1>Restaurant Bill</h1>
                     
-                    <h3>Invoice</h3>
                    
                 </div>
-                <img src="/images/logo2.png" width="100" height="auto" alt="Park Queen Hotel & Resorts Logo">
+                <div class="invoice-logo">
+                 
+                 <img src="/images/logo2.png" width="100" height="auto" style="position: relative;" alt="Park Queen Hotel & Resorts Logo">
+                 </div>   
+                 <div class="invoice-info">
                 
+                <p>Park Queen Hotel & Resorts</p>
+              
+                <p>🏠 Opp Devi Lal Park, <br> Delhi by Pass Road, <br>Rohtak, Haryana</p>
+                <p>📞 +91-1262-469242 </p>
+                <p>📧 fom@parkqueenhotels.com</p>
+            </div>
                   <div class="invoice-info">
-                        <p>Bill Number: ${Math.floor(Math.random() * 100000)}</p>
+                  <p>GSTIN No: </p>
+                        <p>Invoice No: ${Math.floor(Math.random() * 100000)}</p>
                         <p>Date: ${new Date().toLocaleDateString()}</p>
                         <p>Time: ${new Date().toLocaleTimeString()}</p>
                     </div>
-                     <div class="invoice-footer">
-                <h3>Contact Details</h3>
-              
-                <p>Address: Rohtak, Haryana</p>
-                <p>Contact: +91-1262-469242 </p>
-                <p>Email Id: fom@parkqueenhotels.com</p>
-            </div>
-                <h3>Customer Details</h3>
+            <div class="bill-to">
+                <h3>Bill To:</h3>
                 <p>Name: ${name}</p>
                 <p>Room number.: ${address}</p>
-                <p>Contact Number: ${contact}</p>
-                <p>Alternate Contact Number: ${alternateContact}</p>
+                <p>📞 ${contact}</p>
+                <p> ${alternateContact}</p>
+             </div>   
   
                 <table class="invoice-table">
                     <thead>
                         <tr>
-                            <th>Item</th>
+                            <th>Goods Description</th>
                             <th>ID</th>
                             <th>Quantity</th>
                             <th>Price (₹)</th>
@@ -259,7 +365,36 @@ function generateInvoice() {
                     </div>
                 </div>
             </div>
-            <button class="whatsapp-order-button" onclick="sendOrderOnWhatsApp()">Send Order on WhatsApp</button>
+             <script>
+        // JavaScript to toggle the visibility of the message
+        function toggleMessage() {
+            var message = document.getElementById('order-message');
+            if (message.style.display === 'none' || message.style.display === '') {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        }
+    </script>
+    <!-- Notification Icon -->
+    <button class="notification-icon" onclick="toggleMessage()"></button>
+           
+    <!-- Order completion message -->
+    <div class="order-completion-message" id="order-message">
+        <p>This is the last step to complete your order! <br>
+        For convenience, we take orders via WhatsApp. Click the button below to proceed.</p>
+        
+        <!-- Payment method instruction -->
+        <p class="payment-method">Please select a payment method to proceed.</p>
+
+        <!-- Additional notes -->
+        <p class="notes">
+            * Government taxes extra as per actual<br>
+            * In case of any allergies, kindly inform your server before.<br>
+            * Good things come to those who wait! Kindly allow us 15-20 minutes to serve your food fresh!
+        </p>
+    </div>
+            <button class="whatsapp-order-button" onclick="sendOrderOnWhatsApp()"><span>Send Order on WhatsApp</span></button>
             <script>
                 function toggleContent() {
                     const hiddenContent = document.querySelector('.payment-content');

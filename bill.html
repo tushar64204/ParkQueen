@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Bill</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .invoice-container { width: 80%; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .invoice-header { text-align: center; background-color: #4b23a0; color: white; padding: 10px 0; position: relative; }
+        .invoice-header h1 { margin: 0; }
+        .invoice-header img { width: 100px; position: absolute; top: 10px; right: 20px; }
+        .invoice-info { display: flex; justify-content: space-between; margin-top: 20px; }
+        .bill-to { background-color: #4b23a0; color: white; padding: 5px; margin-top: 20px; }
+        .bill-to p { margin: 0; }
+        .invoice-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .invoice-table th, .invoice-table td { border: 1px solid #4b23a0; padding: 8px; text-align: left; }
+        .invoice-table th { background-color: #4b23a0; color: white; }
+        .invoice-footer { text-align: right; margin-top: 20px; }
+        .invoice-footer p { margin: 0; }
+        .invoice-buttons { text-align: center; margin-top: 20px; }
+        .invoice-buttons button { margin: 5px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; }
+        .invoice-buttons button:hover { background-color: #0056b3; }
+        .payment-options { text-align: center; margin-top: 20px; }
+        .payment-options button { margin: 5px; padding: 10px 20px; background-color: #28a745; color: #fff; border: none; cursor: pointer; }
+        .payment-options button:hover { background-color: #218838; }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .invoice-container, .invoice-container * {
+                visibility: visible;
+            }
+            .invoice-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        function convertNumberToWords(amount) {
+            // Function to convert number to words (optional implementation)
+            // You can implement your own or use a library
+            return amount; // Placeholder, replace with actual implementation
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = 'Customer Name'; // Replace with actual customer name
+            const address = 'Room No. 101'; // Replace with actual address
+            const contact = '1234567890'; // Replace with actual contact number
+
+            const cart = [
+                { name: 'Item 1', id: 'ID001', quantity: 2, price: 100, hsn: 'HSN001' },
+                { name: 'Item 2', id: 'ID002', quantity: 1, price: 200, hsn: 'HSN002' }
+                // Add more items as needed
+            ];
+
+            let subtotal = 0;
+            cart.forEach(cartItem => {
+                subtotal += cartItem.price * cartItem.quantity;
+            });
+
+            const discountRate = 0.05; // 5% discount
+            const discountAmount = subtotal * discountRate;
+            const taxableAmount = subtotal - discountAmount;
+
+            const sgstRate = 0.025; // 2.5% SGST
+            const cgstRate = 0.025; // 2.5% CGST
+            const sgstAmount = taxableAmount * sgstRate;
+            const cgstAmount = taxableAmount * cgstRate;
+            const serviceTaxRate = 0.02; // 2% service tax
+            const serviceTaxAmount = taxableAmount * serviceTaxRate;
+
+            const totalTax = sgstAmount + cgstAmount + serviceTaxAmount;
+            const grandTotal = taxableAmount + totalTax;
+
+            document.getElementById('bill-number').textContent = Math.floor(Math.random() * 100000);
+            document.getElementById('bill-date').textContent = new Date().toLocaleDateString();
+            document.getElementById('bill-time').textContent = new Date().toLocaleTimeString();
+            document.getElementById('customer-name').textContent = name;
+            document.getElementById('customer-address').textContent = address;
+            document.getElementById('customer-contact').textContent = contact;
+
+            let invoiceContent = '';
+            cart.forEach((cartItem, index) => {
+                invoiceContent += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${cartItem.name}</td>
+                        <td>${cartItem.hsn}</td>
+                        <td>${cartItem.quantity}</td>
+                        <td>₹${cartItem.price.toFixed(2)}</td>
+                        <td>₹${(cartItem.price * cartItem.quantity).toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            invoiceContent += `
+                <tr>
+                    <th colspan="5">Subtotal</th>
+                    <td>₹${subtotal.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <th colspan="5">Discount (5%)</th>
+                    <td>₹${discountAmount.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <th colspan="5">SGST (2.5%)</th>
+                    <td>₹${sgstAmount.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <th colspan="5">CGST (2.5%)</th>
+                    <td>₹${cgstAmount.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <th colspan="5">Service Tax (2%)</th>
+                    <td>₹${serviceTaxAmount.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <th colspan="5"><b>Grand Total</b></th>
+                    <td><b>₹${grandTotal.toFixed(2)}</b></td>
+                </tr>
+            `;
+
+            document.getElementById('invoice-body').innerHTML = invoiceContent;
+            document.getElementById('amount-in-words').textContent = convertNumberToWords(grandTotal);
+            document.getElementById('total-amount').textContent = `₹${grandTotal.toFixed(2)}`;
+        });
+    </script>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Restaurant Bill</h1>
+            <img src="path/to/your/logo.png" alt="Logo">
+        </div>
+        <div class="invoice-info">
+            <div>
+                <p>Restaurant Name: Park Queen Hotel & Resorts</p>
+                <p>Address: Rohtak, Haryana</p>
+                <p>Phone Number: +91-1262-469242</p>
+            </div>
+            <div>
+                <p>GSTIN No: </p>
+                <p>Invoice No: <span id="bill-number"></span></p>
+                <p>Date: <span id="bill-date"></span></p>
+                <p>Time: <span id="bill-time"></span></p>
+            </div>
+        </div>
+        <div class="bill-to">
+            <p>Bill To:</p>
+            <p>Name: <span id="customer-name"></span></p>
+            <p>Address: <span id="customer-address"></span></p>
+            <p>Phone No: <span id="customer-contact"></span></p>
+        </div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Goods Description</th>
+                    <th>HSN</th>
+                    <th>QTY</th>
+                    <th>MRP</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-body">
+                <!-- Invoice items will be inserted here -->
+            </tbody>
+        </table>
+        <div class="invoice-footer">
+            <p>Amount in words: <span id="amount-in-words"></span> Rupees Only</p>
+            <p>Discount: ₹<span id="discount-amount"></span></p>
+            <p>SGST: ₹<span id="sgst-amount"></span></p>
+            <p>CGST: ₹<span id="cgst-amount"></span></p>
+            <p>Service Tax: ₹<span id="service-tax-amount"></span></p>
+            <p>Total Amount: <span id="total-amount"></span></p>
+        </div>
+        <div class="invoice-buttons">
+            <button onclick="window.print()">Print Invoice</button>
+            <button onclick="window.location.href='upi://pay?pa=your-upi-id&pn=Your%20Name&am=totalAmount&cu=INR'">Pay via UPI</button>
+            <button onclick="window.location.href='mailto:your-email@example.com?subject=Order Invoice&body=Please find the attached invoice.'">Email Invoice</button>
+            <button onclick="window.location.href='https://wa.me/your-whatsapp-number?text=Order%20Invoice'">Send via WhatsApp</button>
+        </div>
+        <div id="qrcode" class="payment-options"></div>
+    </div>
+    <script>
+        // Generate QR code for UPI payment
+        const upiUrl = 'upi://pay?pa=your-upi-id&pn=Your%20Name&am=totalAmount&cu=INR';
+        new QRCode(document.getElementById('qrcode'), {
+            text: upiUrl,
+            width: 128,
+            height: 128
+        });
+    </script>
+</body>
+</html>
