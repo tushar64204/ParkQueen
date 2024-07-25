@@ -192,26 +192,25 @@ function generateInvoice() {
         }
 
         /* Red dot on the bell icon */
-        .notification-icon::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: red;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-        }
+       /* Container for the notification icon */
+.notification-icon {
+    position: relative;
+    width: 48px; /* Adjust the size of the yellow circle */
+    height: 48px; /* Adjust the size of the yellow circle */
+    border-radius: 50%; /* Make it a circle */
+    background-color: #DAA520; /* Yellow circle color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        /* Bell icon */
-        .notification-icon::before {
-            content: url('./images/waiter.png');
-            display: block;
-            width: 24px;
-            height: 24px;
-            margin: 0 auto;
-        }
+/* Bell icon */
+.notification-icon::before {
+    content: url('./images/waiter.png');
+    display: block;
+    width: 24px; /* Adjust the width of the icon */
+    height: 24px; /* Adjust the height of the icon */
+}
 
         /* General styles for the message container */
         .order-completion-message {
