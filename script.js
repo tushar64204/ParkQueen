@@ -77,7 +77,7 @@ function toggleCheckout() {
     } else {
         checkoutForm.style.display = 'none';
         const amountNeeded = 99 - total;
-        cartMessage.innerHTML = `<span style="color: green; background-color: white; padding: 2px;"> Add ₹${amountNeeded.toFixed(2)} more to your cart to proceed to checkout.</span>`;
+        cartMessage.innerHTML = `<span style="color: green; background-color: white; padding: 2px;"> Fill your cart, taste the magic—delight awaits!</span>`;
     }
 }
 
