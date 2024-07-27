@@ -65,13 +65,25 @@
     </script>
 </head>
 <body>
+    <div class="top">
+        <a href="#top"> <!-- Replace the href with your WhatsApp link -->
+            <!-- You can use a WhatsApp icon image or any text/icon of your choice -->
+        <img src="images/top.png" width="50" height="50">
+      </a>
+    </div>
+    <div class="checkout">
+        <a href="#checkoutForm"> <!-- Replace the href with your WhatsApp link -->
+            <!-- You can use a WhatsApp icon image or any text/icon of your choice -->
+        <img src="images/checkouti.png" width="50" height="auto" style="border-radius: 40%;">
+      </a>
+    </div>
     <header>
        
         The ParkQueen Hotel & Resort's Digital Menu
         <nav>
             <a href="#home">Home</a>
             <a href="about.html">About Us</a>
-            <a href="#footer">Checkout</a>
+            <a href="#footer">Contact</a>
         </nav>
     </header>
     <div class="container">
@@ -80,7 +92,7 @@
             <input type="text" id="searchInput" onkeyup="searchItems()" placeholder="Search for items...">
         </div>
         
-        <div class="menu-headings-wrapper">
+        <div class="menu-headings-wrapper" id="top">
             <div class="menu-headings">
                 <div style="position: relative; width: 150px; height: 150px;">
                     <img src="/images/Beverage.jpg" onclick="showSection('beverages')" alt="Beverages Background">
@@ -217,6 +229,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Beverages</h2>
                 <tbody>
                     <tr class="product-item" data-name="Soda" data-price="55" data-id="S55">
                         <td><b>Soda</b></td>
@@ -359,6 +372,9 @@
                         <td class="cart-status" id="status-FJ195"><img src="images/waiter.png" class="waiter"></td>
                         <td><button onclick="addToCart('Fresh Juice', 195, 'FJ195')">Add to Cart</button></td>
                     </tr>
+
+                    <!-- aditional -->
+                     
                 </tbody>
             </table>
         </section>
@@ -379,6 +395,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Cocktails</h2>
                 <tbody>
                     <!-- Cocktails Items -->
                       <tr class="product-item" data-name="Margarita" data-price="495" data-id="M495">
@@ -484,6 +501,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Mocktails</h2>
                 <tbody>
                     <!-- Mocktail Items -->
                     <tr class="product-item" data-name="Virgin Mojito" data-price="325" data-id="VM325">
@@ -548,6 +566,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Salads</h2>
                 <tbody>
                     <!-- Salad Items -->
                     <tr class="product-item" data-name="Green Salad" data-price="195" data-id="GS195">
@@ -647,6 +666,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Soups</h2>
                 <tbody>
                     <tr class="product-item" data-name="Tomato Dhania Shorba" data-price="225" data-id="TDS225">
                         <td><b>Tomato Dhania Shorba</b><br>Classical Italian vegetable broth</td>
@@ -799,6 +819,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Indian Appetizers - Vegetarian</h2>
                 <tbody>
                     <!-- Indian Appetizers Vegetarian Items -->
                     <tr class="product-item" data-name="Queen Platter" data-price="785" data-id="QP785">
@@ -937,6 +958,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Indian Appetizers - Non-Vegetarian</h2>
                 <tbody>
                     <!-- Appetizer Items -->
                     <tr class="product-item" data-name="King Platter" data-price="990" data-id="KP990">
@@ -1075,6 +1097,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Chinese Appetizers</h2>
                 <tbody>
                     <!-- Veg Items -->
                     <tr class="product-item" data-name="Chilli Corn Pepper" data-price="395" data-id="CCP395">
@@ -1216,6 +1239,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Continental Appetizers</h2>
                 <tbody>
                     <!-- Veg Appetizers -->
                     <tr class="product-item" data-name="Mexican Cigar" data-price="395" data-id="MC395">
@@ -1364,6 +1388,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Indian Main Course Veg</h2>
                 <tbody>
                     <!-- Indian Main Course Veg Items -->
                     <tr class="product-item" data-name="Paneer Tikka Butter Masala" data-price="495" data-id="PTBM495">
@@ -1496,6 +1521,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Indian Main Course - Non-Veg</h2>
                 <tbody>
                     <!-- Main Course Items -->
                     <tr class="product-item" data-name="Butter Chicken (Punjabi Style)" data-price="595" data-id="BC595">
@@ -1607,6 +1633,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Oriental Main Course</h2>
                 <tbody>
                     <!-- Veg Items -->
                     <tr class="product-item" data-name="Cheese Chilli" data-price="495" data-id="CC495">
@@ -1727,6 +1754,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Continental Main Course (Veg | Non-Veg)</h2>
                 <tbody>
                     <!-- Veg Items -->
                     <tr class="product-item" data-name="Cottage Cheese Steak" data-price="495" data-id="CCS495">
@@ -1832,6 +1860,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Side Order</h2>
                 <tbody>
                     <tr class="product-item" data-name="Cheese Onion Ring" data-price="295" data-id="COR295">
                         <td><b>Cheese Onion Ring</b></td>
@@ -1907,6 +1936,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Biryani / Rice / Noodles / Raita</h2>
                 <tbody>
                     <!-- Veg Items -->
                     <tr class="product-item" data-name="Hyderabadi Veg Biryani" data-price="395" data-id="HVB395">
@@ -2019,6 +2049,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Choice of Indian Bread</h2>
                 <tbody>
                     <!-- Indian Bread Items -->
                     <tr class="product-item" data-name="Tandoori Roti" data-price="55" data-id="TR55">
@@ -2124,6 +2155,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Fusion Sizzler Veg/Non-Veg</h2>
                 <tbody>
                     <!-- Fusion Sizzler Items -->
                     <tr class="product-item" data-name="Chhupa Rustum Kebab" data-price="675" data-id="CR675">
@@ -2243,6 +2275,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Desserts</h2>
                 <tbody>
                     <!-- Desserts Items -->
                     <tr class="product-item" data-name="Hot Gulab Jamun" data-price="165" data-id="HGJ165">
@@ -2354,6 +2387,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Burger | Wrap | Sandwiches</h2>
                 <tbody>
                     <!-- Burger, Wrap, and Sandwich Items -->
                     <tr class="product-item" data-name="Paneer Tikka Submarine" data-price="355" data-id="PTS355">
@@ -2458,6 +2492,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Wooden Fire Thin Crust (Pizza)</h2>
                 <tbody>
                     <!-- Pizza Items -->
                     <tr class="product-item" data-name="Queen Special Pizza" data-price="425" data-id="QSP425">
@@ -2541,6 +2576,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <h2 id="beverages-heading" >Pasta</h2>
                 <tbody>
                     <!-- Pasta Items -->
                     <tr class="product-item" data-name="Mushroom Risotto" data-price="425" data-id="MR425">
@@ -2661,6 +2697,8 @@
                 </div> -->
                 <div class="contact-info">
                     <p><strong>Park Queen Hotel & Resorts</strong></p>
+                    <p><strong> Any complain? mail us.                 <button onclick="window.location.href='mailto:fnb@parkqueenhotels.com?subject=Order Invoice&body=Please find the attached invoice.'">click here</button></strong></p>
+
                     <p>ADDRESS: Opp Devi Lal Park, Delhi by Pass Road, Rohtak, Haryana</p>
                 </div>
             </div>

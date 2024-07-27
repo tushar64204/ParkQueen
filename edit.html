@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-theme {
+            background-color: #333;
+            color: #f1f1f1;
+        }
+        .light-theme {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .dark-theme th {
+            background-color: #555;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-theme button {
+            background-color: #555;
+            color: #f1f1f1;
+        }
+        .light-theme button {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .product-image {
+            width: 100px;
+            cursor: pointer;
+        }
+        .zoom:hover {
+            transform: scale(1.5);
+            transition: transform 0.2s;
+        }
+        .add-to-cart {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+        .cart-status img {
+            width: 50px;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <div>
+        <button onclick="toggleTheme()">Toggle Dark/Light Theme</button>
+        <button onclick="toggleLanguage()">English/Hindi</button>
+    </div>
+
+    <section id="beverages">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">Beverages</th>
+                </tr>
+                <tr>
+                    <th id="item-details">Item Details</th>
+                    <th id="price">Price</th>
+                    <th id="quantity">Quantity</th>
+                    <th id="cart-status">Cart Status</th>
+                    <th id="action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="product-item" data-name="Soda" data-hindi-name="सोडा" data-price="55" data-id="S55">
+                    <td><img src="images/soda.jpg" alt="Soda" class="product-image"><br><b>Soda / सोडा</b></td>
+                    <td>₹55</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-S55"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Soda', 55, 'S55')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Packed Drinking Water" data-hindi-name="पैक किया हुआ पीने का पानी" data-price="85" data-id="PDW85">
+                    <td><img src="images/water.jpg" alt="Packed Drinking Water" class="product-image"><br><b>Packed Drinking Water / पैक किया हुआ पीने का पानी</b></td>
+                    <td>₹85</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-PDW85"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Packed Drinking Water', 85, 'PDW85')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Aerated Water" data-hindi-name="एरियेटेड वाटर" data-price="85" data-id="AW85">
+                    <td><img src="images/aerated_water.jpg" alt="Aerated Water" class="product-image"><br><b>Aerated Water / एरियेटेड वाटर</b></td>
+                    <td>₹85</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-AW85"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Aerated Water', 85, 'AW85')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Diet Coke" data-hindi-name="डाइट कोक" data-price="115" data-id="DC115">
+                    <td><img src="images/diet_coke.jpg" alt="Diet Coke" class="product-image"><br><b>Diet Coke / डाइट कोक</b></td>
+                    <td>₹115</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-DC115"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Diet Coke', 115, 'DC115')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Canned Juice" data-hindi-name="कैन्ड जूस" data-price="155" data-id="CJ155">
+                    <td><img src="images/canned_juice.jpg" alt="Canned Juice" class="product-image"><br><b>Canned Juice / कैन्ड जूस</b></td>
+                    <td>₹155</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-CJ155"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Canned Juice', 155, 'CJ155')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Tonic Water" data-hindi-name="टॉनिक वाटर" data-price="155" data-id="TW155">
+                    <td><img src="images/tonic_water.jpg" alt="Tonic Water" class="product-image"><br><b>Tonic Water / टॉनिक वाटर</b></td>
+                    <td>₹155</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-TW155"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Tonic Water', 155, 'TW155')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Ginger Ale" data-hindi-name="जिंजर एले" data-price="155" data-id="GA155">
+                    <td><img src="images/ginger_ale.jpg" alt="Ginger Ale" class="product-image"><br><b>Ginger Ale / जिंजर एले</b></td>
+                    <td>₹155</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-GA155"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Ginger Ale', 155, 'GA155')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Pudina Shikanji / Jal Jeera" data-hindi-name="पुदीना शिकंजी / जल जीरा" data-price="155" data-id="PSJJ155">
+                    <td><img src="images/pudina_shikanji.jpg" alt="Pudina Shikanji / Jal Jeera" class="product-image"><br><b>Pudina Shikanji / Jal Jeera / पुदीना शिकंजी / जल जीरा</b></td>
+                    <td>₹155</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-PSJJ155"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Pudina Shikanji / Jal Jeera', 155, 'PSJJ155')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+                <tr class="product-item" data-name="Virgin Mojito" data-hindi-name="वर्जिन मोजिटो" data-price="185" data-id="VM185">
+                    <td><img src="images/virgin_mojito.jpg" alt="Virgin Mojito" class="product-image"><br><b>Virgin Mojito / वर्जिन मोजिटो</b></td>
+                    <td>₹185</td>
+                    <td class="quantity"><input type="number" value="1" min="1"></td>
+                    <td class="cart-status" id="status-VM185"><img src="images/waiter.png" class="waiter"></td>
+                    <td><button class="add-to-cart" onclick="addToCart('Virgin Mojito', 185, 'VM185')">Add to Cart / कार्ट में जोड़ें</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle('light-theme');
+        }
+
+        function toggleLanguage() {
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => {
+                const englishName = item.dataset.name;
+                const hindiName = item.dataset.hindiName;
+                const id = item.dataset.id;
+
+                const nameTd = item.querySelector('td:nth-child(1)');
+                const button = item.querySelector('button');
+
+                if (nameTd.innerHTML.includes(englishName)) {
+                    nameTd.innerHTML = `<img src="images/${id.toLowerCase()}.jpg" alt="${hindiName}" class="product-image"><br><b>${hindiName}</b>`;
+                    button.innerHTML = `कार्ट में जोड़ें`;
+                } else {
+                    nameTd.innerHTML = `<img src="images/${id.toLowerCase()}.jpg" alt="${englishName}" class="product-image"><br><b>${englishName}</b>`;
+                    button.innerHTML = `Add to Cart`;
+                }
+            });
+        }
+
+   
+    </script>
+</body>
+</html>

@@ -210,6 +210,7 @@ function generateInvoice() {
     display: block;
     width: 24px; /* Adjust the width of the icon */
     height: 24px; /* Adjust the height of the icon */
+    
 }
 
         /* General styles for the message container */
@@ -345,7 +346,6 @@ function generateInvoice() {
             </div>
             <div class="invoice-buttons">
                 <button onclick="window.print()">Print Invoice</button>
-                
                 <button onclick="backToShopping()">Back to Shopping</button>
             </div>
             <div class="payment-options">
@@ -478,3 +478,16 @@ function showInputField() {
         }
     }
 }
+window.addEventListener('scroll', function() {
+    const heading = document.getElementById('beverages-heading');
+    const headingPosition = heading.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (headingPosition < screenHeight && headingPosition > 0) {
+        heading.classList.add('crack', 'flash');
+    } else {
+        heading.classList.remove('crack', 'flash');
+    }
+});
+
+
