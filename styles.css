@@ -246,8 +246,8 @@ th {
 }
 
 .product-item img.waiter {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 @media screen and (max-width: 768px) {
     table, thead, tbody, th, td, tr {
@@ -261,13 +261,13 @@ th {
     }
 
     tr {
-        border: 1px solid #DAA520;
+        border: 0px solid #DAA520;
         margin-bottom: 10px;
     }
     
     td {
         border: none;
-        border-bottom: 1px solid #DAA520;
+        border-bottom: 0px solid #DAA520;
         position: relative;
         padding-left: 50%;
         text-align: left;
@@ -408,17 +408,7 @@ body, html {
     background-color: #311708; /* Light background color */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff; /* White background for content */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow for container */
-}
 
-h1, h2, h3 {
-    color: #333; /* Dark text color */
-}
 
 /* Styling for the product list */
 #productList {
@@ -429,14 +419,8 @@ h1, h2, h3 {
     gap: 20px;
 }
 
-      /* Search Bar */
-      #searchBar {
-        margin: 20px;
-        padding: 10px;
-        width: calc(100% - 40px);
-        font-size: 16px;
-        box-sizing: border-box;
-    }
+    
+  
 #productList li {
     background-color: #fff;
     padding: 20px;
@@ -453,11 +437,7 @@ h1, h2, h3 {
     height: auto;
     margin-bottom: 10px;
 }
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+
 
 #productTable {
     width: 100%;
@@ -489,9 +469,7 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-#productTable button:hover {
-    background-color: #45a049;
-}
+
 #productTable img {
     max-width: 100%;
     height: auto;
@@ -506,16 +484,17 @@ h1, h2, h3 {
 
 
 button {
-    background-color: #007bff; /* Blue button color */
-    color: #fff;
+    background-color: #8d6e63; /* Blue button color */
+    color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: gold; /* Darker blue on hover */
+    color: #0a2c12;
 }
 
 /* Styling for the cart */
@@ -529,7 +508,7 @@ button:hover {
 }
 
 #cartItems li {
-    background-color: #fff;
+    background-color: #FEEED4;
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 0 0 5px rgba(233, 229, 229, 0.1);
@@ -557,13 +536,6 @@ form input[type="text"] {
     border-radius: 4px;
 }
 
-form button {
-    background-color: #28a745; /* Green button color */
-}
-
-form button:hover {
-    background-color: #218838; /* Darker green on hover */
-}
 
  /* Zoom Effect */
  .zoom {
@@ -659,77 +631,26 @@ form button:hover {
     }
 }
 
-main {
-    margin: 20px 0 80px 0; /* Adjust bottom margin to ensure main content is not overlapped by nav */
-}
 
-/* Header, footer, and main styling */
-header, footer {
-    background-color: #000000;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT' 
-    
-    
-}
 
-header h1, footer p {
-    margin: 5px 0;
-    
-    color: #ffffff;
-}
 
-nav {
-    margin: 10px 0;
-}
 
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
 
-nav a:hover {
-    text-decoration: underline;
-}
 
-main {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-}
-
-#about {
-    margin: 20px 0;
-}
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+   
+    background-color: #FEEED4;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-hr {
-    border: 3px solid #004080;
-    width: 90px;
-    margin: 10px 0;
-    text-align: center;
-}
-.logo{
-    width: 100px;
-    height: 100px;
-    margin-top: 40px;
-}
+
 @media (max-width: 768px) {
-    .logo {width: auto;
-        height: auto;
-        }
+  
 
 
    .waiter {
@@ -816,15 +737,16 @@ hr {
         margin-bottom: 10px;
     }
 
-    .product-item button {
+    /* .product-item button {
         width: calc(100% - 20px);
         margin-bottom: 10px;
-        background-color: #4CAF50;
-        color: white;
+        background-color: cadetblue;
+       
+        color: goldenrod;
         border: none;
         cursor: pointer;
         padding: 8px 16px;
-    }
+    } */
 
     /* Adjust padding and margins for better spacing */
     .product-item {
@@ -852,7 +774,7 @@ hr {
         }
     
         .product-item .quantity input {
-            width: calc(100% - 20px);
+            width: calc(100% - 200px);
             margin-right: 10px;
             margin-bottom: 10px;
         }
@@ -928,4 +850,22 @@ hr {
     .waiter {
             margin: 0 auto;
             }
-  
+  .notes{
+    color:white;
+  }
+  .dark-mode {
+    background-color: #333;
+    color: #f8f8f8;
+}
+.toggle-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.toggle-lang-button {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    cursor: pointer;
+}
